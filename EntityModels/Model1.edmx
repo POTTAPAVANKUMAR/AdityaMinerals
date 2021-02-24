@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AdityamineralsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Adityaminerals.dbo.ADM_L_BILLINGPART1' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ADM_L_BILLINGPART1">
+          <Key>
+            <PropertyRef Name="InvoiceNo" />
+          </Key>
+          <Property Name="InvoiceNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="State_VC" Type="nvarchar(max)" />
+          <Property Name="StateCode" Type="int" />
+          <Property Name="DateOfIssue" Type="datetime" />
+          <Property Name="BP_Name_VC" Type="nvarchar(max)" />
+          <Property Name="BP_Address_VC" Type="nvarchar(max)" />
+          <Property Name="BP_Gstin_VC" Type="nvarchar(max)" />
+          <Property Name="BP_State_VC" Type="nvarchar(max)" />
+          <Property Name="BP_StateCode_VC" Type="nvarchar(max)" />
+          <Property Name="SP_Name_VC1" Type="nvarchar(max)" />
+          <Property Name="SP_Address_VC1" Type="nvarchar(max)" />
+          <Property Name="SP_Gstin_VC1" Type="nvarchar(max)" />
+          <Property Name="SP_State_VC1" Type="nvarchar(max)" />
+          <Property Name="SP_StateCode_VC1" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Adityaminerals.dbo.ADM_L_BILLINGPART2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ADM_L_BILLINGPART2">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InvoiceNo" Type="int" />
+          <Property Name="ProductionDescription_VC" Type="varchar(max)" />
+          <Property Name="HSNCODE_VC" Type="nchar" MaxLength="10" />
+          <Property Name="UOM_VC" Type="nchar" MaxLength="10" />
+          <Property Name="QTY" Type="int" />
+          <Property Name="Rate" Type="int" />
+          <Property Name="Amount" Type="int" />
+          <Property Name="Discount" Type="int" />
+          <Property Name="ValueofSupply" Type="int" />
+          <Property Name="Sno" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Adityaminerals.dbo.ADM_M_BILLINGPRODUCTS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ADM_M_BILLINGPRODUCTS">
+          <Key>
+            <PropertyRef Name="Sno" />
+          </Key>
+          <Property Name="Sno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductDescription" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Adityaminerals.dbo.ADM_M_UOM' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ADM_M_UOM">
+          <Key>
+            <PropertyRef Name="UOM_ID" />
+          </Key>
+          <Property Name="UOM_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UOMName_VC" Type="varchar(max)" />
+          <Property Name="UOMDesc_VC" Type="varchar(max)" />
+          <Property Name="SINGLEQTY" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Adityaminerals.dbo.ADM_M_USER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ADM_M_USER">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityContainer Name="AdityamineralsModelStoreContainer">
+          <EntitySet Name="ADM_L_BILLINGPART1" EntityType="Self.ADM_L_BILLINGPART1" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ADM_L_BILLINGPART1].[InvoiceNo] AS [InvoiceNo], 
+    [ADM_L_BILLINGPART1].[State_VC] AS [State_VC], 
+    [ADM_L_BILLINGPART1].[StateCode] AS [StateCode], 
+    [ADM_L_BILLINGPART1].[DateOfIssue] AS [DateOfIssue], 
+    [ADM_L_BILLINGPART1].[BP_Name_VC] AS [BP_Name_VC], 
+    [ADM_L_BILLINGPART1].[BP_Address_VC] AS [BP_Address_VC], 
+    [ADM_L_BILLINGPART1].[BP_Gstin_VC] AS [BP_Gstin_VC], 
+    [ADM_L_BILLINGPART1].[BP_State_VC] AS [BP_State_VC], 
+    [ADM_L_BILLINGPART1].[BP_StateCode_VC] AS [BP_StateCode_VC], 
+    [ADM_L_BILLINGPART1].[SP_Name_VC1] AS [SP_Name_VC1], 
+    [ADM_L_BILLINGPART1].[SP_Address_VC1] AS [SP_Address_VC1], 
+    [ADM_L_BILLINGPART1].[SP_Gstin_VC1] AS [SP_Gstin_VC1], 
+    [ADM_L_BILLINGPART1].[SP_State_VC1] AS [SP_State_VC1], 
+    [ADM_L_BILLINGPART1].[SP_StateCode_VC1] AS [SP_StateCode_VC1]
+    FROM [dbo].[ADM_L_BILLINGPART1] AS [ADM_L_BILLINGPART1]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ADM_L_BILLINGPART2" EntityType="Self.ADM_L_BILLINGPART2" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ADM_L_BILLINGPART2].[ID] AS [ID], 
+    [ADM_L_BILLINGPART2].[InvoiceNo] AS [InvoiceNo], 
+    [ADM_L_BILLINGPART2].[ProductionDescription_VC] AS [ProductionDescription_VC], 
+    [ADM_L_BILLINGPART2].[HSNCODE_VC] AS [HSNCODE_VC], 
+    [ADM_L_BILLINGPART2].[UOM_VC] AS [UOM_VC], 
+    [ADM_L_BILLINGPART2].[QTY] AS [QTY], 
+    [ADM_L_BILLINGPART2].[Rate] AS [Rate], 
+    [ADM_L_BILLINGPART2].[Amount] AS [Amount], 
+    [ADM_L_BILLINGPART2].[Discount] AS [Discount], 
+    [ADM_L_BILLINGPART2].[ValueofSupply] AS [ValueofSupply], 
+    [ADM_L_BILLINGPART2].[Sno] AS [Sno]
+    FROM [dbo].[ADM_L_BILLINGPART2] AS [ADM_L_BILLINGPART2]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ADM_M_BILLINGPRODUCTS" EntityType="Self.ADM_M_BILLINGPRODUCTS" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ADM_M_BILLINGPRODUCTS].[Sno] AS [Sno], 
+    [ADM_M_BILLINGPRODUCTS].[ProductDescription] AS [ProductDescription]
+    FROM [dbo].[ADM_M_BILLINGPRODUCTS] AS [ADM_M_BILLINGPRODUCTS]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ADM_M_UOM" EntityType="Self.ADM_M_UOM" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ADM_M_UOM].[UOM_ID] AS [UOM_ID], 
+    [ADM_M_UOM].[UOMName_VC] AS [UOMName_VC], 
+    [ADM_M_UOM].[UOMDesc_VC] AS [UOMDesc_VC], 
+    [ADM_M_UOM].[SINGLEQTY] AS [SINGLEQTY]
+    FROM [dbo].[ADM_M_UOM] AS [ADM_M_UOM]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ADM_M_USER" EntityType="Self.ADM_M_USER" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ADM_M_USER].[UserID] AS [UserID], 
+    [ADM_M_USER].[UserName] AS [UserName], 
+    [ADM_M_USER].[Password] AS [Password], 
+    [ADM_M_USER].[IsActive] AS [IsActive]
+    FROM [dbo].[ADM_M_USER] AS [ADM_M_USER]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AdityamineralsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ADM_M_USER">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
+        <EntityContainer Name="AdityamineralsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ADM_M_USER" EntityType="Self.ADM_M_USER" />
+          <EntitySet Name="ADM_L_BILLINGPART1" EntityType="AdityamineralsModel.ADM_L_BILLINGPART1" />
+          <EntitySet Name="ADM_L_BILLINGPART2" EntityType="AdityamineralsModel.ADM_L_BILLINGPART2" />
+          <EntitySet Name="ADM_M_BILLINGPRODUCTS" EntityType="AdityamineralsModel.ADM_M_BILLINGPRODUCTS" />
+          <EntitySet Name="ADM_M_UOM" EntityType="AdityamineralsModel.ADM_M_UOM" />
+        </EntityContainer>
+        <EntityType Name="ADM_L_BILLINGPART1">
+          <Key>
+            <PropertyRef Name="InvoiceNo" />
+          </Key>
+          <Property Name="InvoiceNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="State_VC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StateCode" Type="Int32" />
+          <Property Name="DateOfIssue" Type="DateTime" Precision="3" />
+          <Property Name="BP_Name_VC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BP_Address_VC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BP_Gstin_VC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BP_State_VC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BP_StateCode_VC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SP_Name_VC1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SP_Address_VC1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SP_Gstin_VC1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SP_State_VC1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SP_StateCode_VC1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ADM_L_BILLINGPART2">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InvoiceNo" Type="Int32" />
+          <Property Name="ProductionDescription_VC" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="HSNCODE_VC" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="UOM_VC" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="QTY" Type="Int32" />
+          <Property Name="Rate" Type="Int32" />
+          <Property Name="Amount" Type="Int32" />
+          <Property Name="Discount" Type="Int32" />
+          <Property Name="ValueofSupply" Type="Int32" />
+          <Property Name="Sno" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ADM_M_BILLINGPRODUCTS">
+          <Key>
+            <PropertyRef Name="Sno" />
+          </Key>
+          <Property Name="Sno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ADM_M_UOM">
+          <Key>
+            <PropertyRef Name="UOM_ID" />
+          </Key>
+          <Property Name="UOM_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UOMName_VC" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UOMDesc_VC" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SINGLEQTY" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AdityamineralsModelStoreContainer" CdmEntityContainer="AdityamineralsEntities">
+          <EntitySetMapping Name="ADM_M_USER">
+            <EntityTypeMapping TypeName="AdityamineralsModel.ADM_M_USER">
+              <MappingFragment StoreEntitySet="ADM_M_USER">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ADM_L_BILLINGPART1">
+            <EntityTypeMapping TypeName="AdityamineralsModel.ADM_L_BILLINGPART1">
+              <MappingFragment StoreEntitySet="ADM_L_BILLINGPART1">
+                <ScalarProperty Name="SP_StateCode_VC1" ColumnName="SP_StateCode_VC1" />
+                <ScalarProperty Name="SP_State_VC1" ColumnName="SP_State_VC1" />
+                <ScalarProperty Name="SP_Gstin_VC1" ColumnName="SP_Gstin_VC1" />
+                <ScalarProperty Name="SP_Address_VC1" ColumnName="SP_Address_VC1" />
+                <ScalarProperty Name="SP_Name_VC1" ColumnName="SP_Name_VC1" />
+                <ScalarProperty Name="BP_StateCode_VC" ColumnName="BP_StateCode_VC" />
+                <ScalarProperty Name="BP_State_VC" ColumnName="BP_State_VC" />
+                <ScalarProperty Name="BP_Gstin_VC" ColumnName="BP_Gstin_VC" />
+                <ScalarProperty Name="BP_Address_VC" ColumnName="BP_Address_VC" />
+                <ScalarProperty Name="BP_Name_VC" ColumnName="BP_Name_VC" />
+                <ScalarProperty Name="DateOfIssue" ColumnName="DateOfIssue" />
+                <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+                <ScalarProperty Name="State_VC" ColumnName="State_VC" />
+                <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ADM_L_BILLINGPART2">
+            <EntityTypeMapping TypeName="AdityamineralsModel.ADM_L_BILLINGPART2">
+              <MappingFragment StoreEntitySet="ADM_L_BILLINGPART2">
+                <ScalarProperty Name="Sno" ColumnName="Sno" />
+                <ScalarProperty Name="ValueofSupply" ColumnName="ValueofSupply" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="QTY" ColumnName="QTY" />
+                <ScalarProperty Name="UOM_VC" ColumnName="UOM_VC" />
+                <ScalarProperty Name="HSNCODE_VC" ColumnName="HSNCODE_VC" />
+                <ScalarProperty Name="ProductionDescription_VC" ColumnName="ProductionDescription_VC" />
+                <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ADM_M_BILLINGPRODUCTS">
+            <EntityTypeMapping TypeName="AdityamineralsModel.ADM_M_BILLINGPRODUCTS">
+              <MappingFragment StoreEntitySet="ADM_M_BILLINGPRODUCTS">
+                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+                <ScalarProperty Name="Sno" ColumnName="Sno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ADM_M_UOM">
+            <EntityTypeMapping TypeName="AdityamineralsModel.ADM_M_UOM">
+              <MappingFragment StoreEntitySet="ADM_M_UOM">
+                <ScalarProperty Name="SINGLEQTY" ColumnName="SINGLEQTY" />
+                <ScalarProperty Name="UOMDesc_VC" ColumnName="UOMDesc_VC" />
+                <ScalarProperty Name="UOMName_VC" ColumnName="UOMName_VC" />
+                <ScalarProperty Name="UOM_ID" ColumnName="UOM_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
