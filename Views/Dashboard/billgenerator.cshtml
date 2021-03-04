@@ -3,6 +3,90 @@
     ViewBag.Title = "billgenerator";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>jQuery UI Datepicker - Default functionality</title>
+<link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+      rel="stylesheet">
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<div id="background">
+    <div class="container row col-md-12">
+
+        <div class="col-md-3">
+            <legend style="color:white">Supply bill</legend>
+            <div class="form-group">
+                <label for="">Invoice No</label>
+                <input type="text" class="form-control" id="invoiceno" aria-describedby="emailHelp" placeholder="InvoiceNo" readonly>
+            </div>
+            <div class="form-group">
+                <label for="">Date</label>
+                <input type="text" class="form-control" id="date1" aria-describedby="DATE" placeholder="MM-DD-YYYY" value=@DateTime.Now.ToString("dd/MMM/yy") readonly>
+            </div>
+            <div class="form-group">
+                <label for="">State</label>
+                <input type="text" class="form-control" id="state1" aria-describedby="DATE" placeholder="state" value="Andhra Pradesh" >
+            </div>
+            <div class="form-group">
+                <label for="">State Code</label>
+                <input type="text" class="form-control" id="statecode1" aria-describedby="" placeholder="state name" value="37" >
+            </div>
+        </div>
+        <div class="col-md-3">
+            <legend style="color:white">Bill to party</legend>
+            <div class="form-group">
+                <label for="">Name</label>
+                <input type="text" class="form-control" id="bpname" aria-describedby="emailHelp" placeholder="Name">
+            </div>
+            <div class="form-group">
+                <label for="">Address</label>
+                <input type="text" class="form-control" id="bpaddress" aria-describedby="" placeholder="Address">
+            </div>
+            <div class="form-group">
+                <label for="">GSTIN/UIN</label>
+                <input type="text" class="form-control" id="bpgst" aria-describedby="" placeholder="GSTIN/UIN">
+            </div>
+            <div class="form-group">
+                <label for="">State</label>
+                <input type="text" class="form-control" id="state2" aria-describedby="DATE" placeholder="state" value="Andhra Pradesh" >
+            </div>
+            <div class="form-group">
+                <label for="">State Code</label>
+                <input type="text" class="form-control" id="statecode2" aria-describedby="" placeholder="state name" value="37" >
+            </div>
+        </div>
+        <div class="col-md-3">
+            <legend style="color:white">Ship to party</legend>
+            <div class="form-group">
+                <label for="">Name</label>
+                <input type="text" class="form-control" id="spname" aria-describedby="emailHelp" placeholder="Name">
+            </div>
+            <div class="form-group">
+                <label for="">Address</label>
+                <input type="text" class="form-control" id="spaddress" aria-describedby="" placeholder="Address">
+            </div>
+            <div class="form-group">
+                <label for="">GSTIN/UIN</label>
+                <input type="text" class="form-control" id="spgst" aria-describedby="" placeholder="GSTIN/UIN">
+            </div>
+            <div class="form-group">
+                <label for="">State</label>
+                <input type="text" class="form-control" id="state3" aria-describedby="DATE" placeholder="state" value="Andhra Pradesh" >
+            </div>
+            <div class="form-group">
+                <label for="">State Code</label>
+                <input type="text" class="form-control" id="statecode3" aria-describedby="" placeholder="state name" value="37" >
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        var $j = jQuery.noConflict();
+        $j("#date").datepicker();
+        $("#date").datepicker("show");
+    });
 
 
+</script>
 

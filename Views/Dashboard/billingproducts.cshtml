@@ -1,0 +1,135 @@
+﻿@using AdityaMinerals.EntityModels
+@model List<ADM_M_BILLINGPRODUCTS>
+@{
+    ViewBag.Title = "billingproducts";
+}
+
+<div id="background">
+    <div class="container row col-md-12">
+        <div class="col-md-8">
+
+            <div class="container form-group" style="width:60% ;position:center;padding-top:3%">
+
+                <table id="prodtable" class="table table-responsive table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">
+                                ID
+                            </th>
+                            <th scope="col">
+                                PRODUCT NAME
+                            </th>
+                            <th scope="col">
+                                UOM ID
+                            </th>
+                            <th scope="col">
+                                UOM NAME
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="table-active">
+                                <td scope="row">
+                                    @item.Sno
+                                </td>
+                                <td scope="row">
+                                    @item.ProductDescription
+                                </td>
+                                <td scope="row">
+                                    @item.UOM_Id
+                                </td>
+                                <td scope="row">
+                                    @item.UOM_Name
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <div class="col-md-4">
+            <form>
+                <fieldset>
+                    <legend style="color:white">ADD & EDIT PRODUCT FOR BILLING</legend>
+
+                    <div class="form-group">
+                        <label for="sno">S NO</label>
+                        <input type="text" class="form-control" id="sno" aria-describedby="emailHelp" placeholder="Enter sno">
+                        <small id="sno" class="form-text text-muted">Enter SNO only for Product Edit</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="pd">PRODUCT NAME</label>
+                        <input type="text" class="form-control" id="pd" aria-describedby="emailHelp" placeholder="Product name">
+
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleSelect1">Select-UOM</label>
+                        <select class="form-control" id="exampleSelect1">
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" onclick="addeditproducts(1)">ADD/EDIT</button>
+                    @*<button type="submit" class="btn btn-primary" onclick="addedituom(0)">EDIT</button>*@
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    proddatatable();
+    getuomlist();
+    function getuomlist() {
+         $.ajax({
+                type: "POST",
+                url: "@Url.Action("uomlist", "Dashboard")",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                cache: false,
+                async: false,
+                data: '',
+             success: function (data) {
+                 let output = data.map(x => "<option value='" + x.id + "'>" + x.text + "</Option>");
+                 $("#exampleSelect1").append(output.join(' '));
+                }
+         });
+    }
+    function proddatatable() {
+        $('#prodtable').DataTable({
+
+            scrollY: "250px",
+            scrollX: true,
+            scrollCollapse: true,
+            columnDefs: [
+                { width: '20%', targets: 0 }
+            ],
+            fixedColumns: true,
+
+        });
+    }
+    function addeditproducts(variable) {
+        billingprodedit = {};
+        billingprodedit.sno = $("#sno").val();
+        billingprodedit.productname = $("#pd").val();
+        billingprodedit.uomid = $("#exampleSelect1").val();
+         $.ajax({
+                type: "POST",
+                url: "@Url.Action("addeditbillingprod", "Dashboard")",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                cache: false,
+                async: false,
+             data: JSON.stringify(billingprodedit),
+                success: function (data) {
+
+                    res = data.Message;
+                    code = data.StatusCode;
+                    alert(res);
+                }
+         });
+    }
+</script>

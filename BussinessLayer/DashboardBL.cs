@@ -41,5 +41,19 @@ namespace AdityaMinerals.BussinessLayer
             }
             return output;
         }
+        public CommonOutput addeditbillingprod(billingprodedit data)
+        {
+            CommonOutput output = new CommonOutput();
+            try
+            {
+                DashbordDL obj = new DashbordDL();
+                output = obj.addeditbillingprod(data);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return output;
+        }
     }
 }

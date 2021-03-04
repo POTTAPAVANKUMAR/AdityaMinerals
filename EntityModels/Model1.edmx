@@ -51,7 +51,9 @@ warning 6002: The table/view 'Adityaminerals.dbo.ADM_M_BILLINGPRODUCTS' does not
             <PropertyRef Name="Sno" />
           </Key>
           <Property Name="Sno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ProductDescription" Type="nvarchar(max)" />
+          <Property Name="ProductDescription" Type="varchar" MaxLength="50" />
+          <Property Name="UOM_Id" Type="int" />
+          <Property Name="UOM_Name" Type="varchar(max)" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'Adityaminerals.dbo.ADM_M_UOM' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -112,7 +114,9 @@ warning 6002: The table/view 'Adityaminerals.dbo.ADM_M_USER' does not have a pri
           <EntitySet Name="ADM_M_BILLINGPRODUCTS" EntityType="Self.ADM_M_BILLINGPRODUCTS" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [ADM_M_BILLINGPRODUCTS].[Sno] AS [Sno], 
-    [ADM_M_BILLINGPRODUCTS].[ProductDescription] AS [ProductDescription]
+    [ADM_M_BILLINGPRODUCTS].[ProductDescription] AS [ProductDescription], 
+    [ADM_M_BILLINGPRODUCTS].[UOM_Id] AS [UOM_Id], 
+    [ADM_M_BILLINGPRODUCTS].[UOM_Name] AS [UOM_Name]
     FROM [dbo].[ADM_M_BILLINGPRODUCTS] AS [ADM_M_BILLINGPRODUCTS]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="ADM_M_UOM" EntityType="Self.ADM_M_UOM" store:Type="Tables" store:Schema="dbo">
@@ -192,7 +196,9 @@ warning 6002: The table/view 'Adityaminerals.dbo.ADM_M_USER' does not have a pri
             <PropertyRef Name="Sno" />
           </Key>
           <Property Name="Sno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProductDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UOM_Id" Type="Int32" />
+          <Property Name="UOM_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ADM_M_UOM">
           <Key>
@@ -259,6 +265,8 @@ warning 6002: The table/view 'Adityaminerals.dbo.ADM_M_USER' does not have a pri
           <EntitySetMapping Name="ADM_M_BILLINGPRODUCTS">
             <EntityTypeMapping TypeName="AdityamineralsModel.ADM_M_BILLINGPRODUCTS">
               <MappingFragment StoreEntitySet="ADM_M_BILLINGPRODUCTS">
+                <ScalarProperty Name="UOM_Name" ColumnName="UOM_Name" />
+                <ScalarProperty Name="UOM_Id" ColumnName="UOM_Id" />
                 <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
                 <ScalarProperty Name="Sno" ColumnName="Sno" />
               </MappingFragment>

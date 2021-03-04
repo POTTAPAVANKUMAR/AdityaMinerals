@@ -16,5 +16,7 @@ namespace AdityaMinerals.EntityModels
     {
         public int Sno { get; set; }
         public string ProductDescription { get; set; }
+        public Nullable<int> UOM_Id { get; set; }
+        public string UOM_Name { get; set; }
     }
 }

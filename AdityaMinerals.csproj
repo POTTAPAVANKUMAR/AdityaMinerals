@@ -167,6 +167,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\billingprodedit.cs" />
     <Compile Include="Models\CommonOutput.cs" />
     <Compile Include="Models\login.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -237,9 +238,12 @@
     <Content Include="Views\Dashboard\billgenerator.cshtml" />
     <Content Include="Views\Dashboard\UOM.cshtml" />
     <Content Include="Views\Dashboard\ADDUOM.cshtml" />
+    <Content Include="Views\Dashboard\billconfig.cshtml" />
+    <Content Include="Views\Dashboard\billingproducts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\billingprodedit\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
