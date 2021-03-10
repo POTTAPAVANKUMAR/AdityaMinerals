@@ -1,4 +1,5 @@
-﻿
+﻿@using AdityaMinerals.EntityModels
+@model List<ADM_M_BILLINGPRODUCTS>
 @{
     ViewBag.Title = "billgenerator";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -10,30 +11,39 @@
       rel="stylesheet">
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+<style>
+    #productslistdiv .list-group-item {
+        /*cursor: pointer;*/
+    }
+   
+</style>
 <div id="background">
     <div class="container row col-md-12">
 
-        <div class="col-md-3">
+        <div class="col-md-3" id="dashmaina">
             <legend style="color:white">Supply bill</legend>
+            <hr />
             <div class="form-group">
                 <label for="">Invoice No</label>
-                <input type="text" class="form-control" id="invoiceno" aria-describedby="emailHelp" placeholder="InvoiceNo" readonly>
+                <input type="text" class="form-control" id="invoiceno" aria-describedby="emailHelp" placeholder="InvoiceNo" value=@ViewBag.invoiceno >
             </div>
             <div class="form-group">
                 <label for="">Date</label>
-                <input type="text" class="form-control" id="date1" aria-describedby="DATE" placeholder="MM-DD-YYYY" value=@DateTime.Now.ToString("dd/MMM/yy") readonly>
+                <input type="text" class="form-control" id="date1" aria-describedby="DATE" placeholder="MM-DD-YYYY" value=@DateTime.Now.ToString("dd/MMM/yy") >
             </div>
             <div class="form-group">
                 <label for="">State</label>
-                <input type="text" class="form-control" id="state1" aria-describedby="DATE" placeholder="state" value="Andhra Pradesh" >
+                <input type="text" class="form-control" id="state1" aria-describedby="DATE" placeholder="state" value="Andhra Pradesh">
             </div>
             <div class="form-group">
                 <label for="">State Code</label>
-                <input type="text" class="form-control" id="statecode1" aria-describedby="" placeholder="state name" value="37" >
+                <input type="text" class="form-control" id="statecode1" aria-describedby="" placeholder="state name" value="37">
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3" id="dashmaina">
             <legend style="color:white">Bill to party</legend>
+            <hr />
             <div class="form-group">
                 <label for="">Name</label>
                 <input type="text" class="form-control" id="bpname" aria-describedby="emailHelp" placeholder="Name">
@@ -48,15 +58,16 @@
             </div>
             <div class="form-group">
                 <label for="">State</label>
-                <input type="text" class="form-control" id="state2" aria-describedby="DATE" placeholder="state" value="Andhra Pradesh" >
+                <input type="text" class="form-control" id="state2" aria-describedby="DATE" placeholder="state" value="Andhra Pradesh">
             </div>
             <div class="form-group">
                 <label for="">State Code</label>
-                <input type="text" class="form-control" id="statecode2" aria-describedby="" placeholder="state name" value="37" >
+                <input type="text" class="form-control" id="statecode2" aria-describedby="" placeholder="state name" value="37">
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3" id="dashmaina">
             <legend style="color:white">Ship to party</legend>
+            <hr />
             <div class="form-group">
                 <label for="">Name</label>
                 <input type="text" class="form-control" id="spname" aria-describedby="emailHelp" placeholder="Name">
@@ -71,22 +82,133 @@
             </div>
             <div class="form-group">
                 <label for="">State</label>
-                <input type="text" class="form-control" id="state3" aria-describedby="DATE" placeholder="state" value="Andhra Pradesh" >
+                <input type="text" class="form-control" id="state3" aria-describedby="DATE" placeholder="state" value="Andhra Pradesh">
             </div>
             <div class="form-group">
                 <label for="">State Code</label>
-                <input type="text" class="form-control" id="statecode3" aria-describedby="" placeholder="state name" value="37" >
+                <input type="text" class="form-control" id="statecode3" aria-describedby="" placeholder="state name" value="37">
             </div>
+        </div>
+        <div class="col-md-3" id="dashmaina">
+            <legend style="color:white">Billing Products</legend>
+            <hr />
+            <div id="productslistdiv">
+
+                <ul class="list-group list-group-height " style="overflow-y: auto;">
+                    @foreach (var item in Model)
+                    {
+                        <li class="list-group-item" data-prodid="@item.Sno" data-prodname="@item.ProductDescription">
+                            @item.ProductDescription
+                            <div class="float-lg-right">
+                                <button type="button" class="btn btn-primary btn-sm" onclick="productchecklist(@item.Sno)">Edit</button>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <hr />
+            <br />
+            <input type="text" id="date_e" value="@DateTime.Now.ToString("mm/dd/yy")" hidden/>
+            <button type="button" onclick="savebp1()" class="btn btn-primary vertical-center">&nbsp;&nbsp;&nbsp;&nbsp; Save all&nbsp;&nbsp;&nbsp;&nbsp;</button>
+            <button type="button" onclick ="location.href ='billslist'" class="btn btn-primary vertical-center">&nbsp;&nbsp;&nbsp;Bills List&nbsp;&nbsp;&nbsp;</button>
         </div>
     </div>
 </div>
+
+<div id="dvModalHolder"></div>
+
 <script>
+    let invoiceid = $('#invoiceno').val();
+    let desc = '';
     $(function () {
         var $j = jQuery.noConflict();
-        $j("#date").datepicker();
-        $("#date").datepicker("show");
+        //$j("#date").datepicker();
+        //$("#date").datepicker("show");
     });
+    $(document).ready(function () {
 
+        $('#productslistdiv .list-group-item').click(function () {
 
+        });
+    });
+    function productchecklist(num) {
+        //alert(num);
+        debugger;
+        $(this).siblings().removeClass("active");
+            $(this).addClass("active");
+        let prodid = num;
+
+        req = {};
+        req.prodid = num;
+        req.invoiceno = invoiceid;
+        req.proddesc = desc;
+            $.ajax({
+                type: "POST",
+                cache: false,
+                async: true,
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ "req": req }),
+                dataType: 'html',
+                url: "@Url.Action("savebp1", "Dashboard")",
+                success: function (data) {
+                    $('#dvModalHolder').html("");
+                    $('#dvModalHolder').html(data);
+                    $('#btnTriggerAdEditGangMdl').click();
+                },
+                error: function (e) {
+                    console.log(e)
+                }
+            });
+    }
+    function savebp1() {
+        debugger;
+        savebp1model = {};
+        savebp1model.state = $('#state1').val();
+        savebp1model.statecode = $('#statecode1').val();
+        savebp1model.date = $('#date_e').val();
+        savebp1model.bpname = $('#bpname').val();
+        savebp1model.bpaddress = $('#bpaddress').val();
+        savebp1model.bpgstin = $('#bpgst').val();
+        savebp1model.bpstate = $('#state2').val();
+        savebp1model.bpstatecode = $('#statecode2').val();
+        savebp1model.spname = $('#spname').val();
+        savebp1model.spaddress = $('#spaddress').val();
+        savebp1model.spgstin = $('#spgst').val();
+        savebp1model.spstate = $('#state3').val();
+        savebp1model.spstatecode = $('#statecode3').val();
+         $.ajax({
+                type: "POST",
+                url: "@Url.Action("savebp11", "Dashboard")",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                cache: false,
+                async: false,
+                data: JSON.stringify(savebp1model),
+                success: function (data) {
+                    res = data.Message;
+                    code = data.StatusCode;
+                    alert(res);
+                    if (res = '200') {
+                        location.reload();
+                    }
+                }
+         });
+    }
+    function billslist() {
+        debugger;
+        $.ajax({
+                type: "GET",
+                url: "@Url.Action("billslist", "Dashboard")",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                cache: false,
+                async: false,
+            
+                success: function (data) {
+                  
+                }
+         });
+
+    }
 </script>
 

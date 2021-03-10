@@ -1,0 +1,10 @@
+﻿@using AdityaMinerals.EntityModels
+@model List<ADM_M_BILLINGPRODUCTS>
+<ul class="list-group list-group-height " style="overflow-y: auto;">
+    @foreach (var item in Model)
+    {
+        <li class="list-group-item" data-prodid="@item.Sno" data-prodname="@item.ProductDescription">
+            @item.ProductDescription
+        </li>
+    }
+</ul>

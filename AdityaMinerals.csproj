@@ -173,10 +173,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\2ac58ca3c5e1d553148f12ba1d7a38e8.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images.jfif" />
+    <Content Include="Content\images.png" />
     <Content Include="Content\michael-benz-IgWNxx7paz4-unsplash.jpg" />
     <Content Include="Content\ocean.jpg" />
     <Content Include="EntityModels\Model1.Context.tt">
@@ -240,10 +243,12 @@
     <Content Include="Views\Dashboard\ADDUOM.cshtml" />
     <Content Include="Views\Dashboard\billconfig.cshtml" />
     <Content Include="Views\Dashboard\billingproducts.cshtml" />
+    <Content Include="Views\Dashboard\_productslistview.cshtml" />
+    <Content Include="Views\Dashboard\_editbillprod.cshtml" />
+    <Content Include="Views\Dashboard\billslist.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\billingprodedit\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

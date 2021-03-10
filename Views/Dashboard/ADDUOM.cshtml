@@ -80,13 +80,14 @@
         width: 1000px;
     }
 </style>
-<body>
-    <div id="bodyuomform" class="col-md-12 container row">
-        <div class="col-md-8">
+<div id="background">
+    <div  class="col-md-12 container row">
+        <div class="col-md-8" id="dashmaina">
             
 
 
-
+            <br />
+            <br />
                 <div class="container form-group" style="width:50% ;position:center;padding-top:3%">
 
                     <table id="uomtable" class="table table-responsive table-hover">
@@ -132,11 +133,11 @@
                 </div>
 
         </div>
-        <div class="container form-group col-md-4" style="width:33%;position:center;padding-top:3%" >
+        <div class="container form-group col-md-4" style="width:33%;position:center;padding-top:3%" id="dashmaina">
             <form>
                 <fieldset>
                     <legend style="color:white">ADD & EDIT UOM</legend>
-
+                    <hr />
                     <div class="form-group">
                         <label for="id">UOM ID</label>
                         <input type="text" class="form-control" id="id" aria-describedby="emailHelp" placeholder="Enter id">
@@ -161,11 +162,14 @@
 
                     <button type="submit" class="btn btn-primary" onclick="addedituom(1)">ADD/EDIT</button>
                     @*<button type="submit" class="btn btn-primary" onclick="addedituom(0)">EDIT</button>*@
+                 
+                    <br />
+                    <br />
                 </fieldset>
             </form>
         </div>
     </div>
-</body>
+    </div>
 <script>
     var res = '';
     var code = '';
@@ -202,6 +206,8 @@
     function uomdatatable() {
         $('#uomtable').DataTable({
 
+            "aLengthMenu": [10, 20, 30],
+            'iDisplayLength': 5,
             scrollY: "300px",
             scrollX: true,
             scrollCollapse: true,

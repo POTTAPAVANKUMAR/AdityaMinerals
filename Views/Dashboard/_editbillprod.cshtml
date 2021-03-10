@@ -1,0 +1,192 @@
+﻿@using AdityaMinerals.Models
+@model req
+<style>
+    #frmSaveGang #chkIsActive {
+        height: 0;
+        width: 0;
+        visibility: hidden;
+    }
+
+    
+    #frmSaveGang #switch-toggle label {
+        cursor: pointer;
+        text-indent: -9999px;
+        width: 50px;
+        height: 20px;
+        background: grey;
+        display: block;
+        border-radius: 100px;
+        position: relative;
+    }
+
+        #frmSaveGang #switch-toggle label:after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 5px;
+            width: 17px;
+            height: 15px;
+            background: #fff;
+            border-radius: 90px;
+            transition: 0.3s
+        }
+
+    #frmSaveGang #switch-toggle input:checked + label {
+        background: #519a51;
+    }
+
+        #frmSaveGang #switch-toggle input:checked + label:after {
+            left: calc(100% - 5px);
+            transform: translateX(-100%);
+        }
+
+    #frmSaveGang #switch-toggle label:active:after {
+        width: 130px;
+    }
+</style>
+
+<button class="btn btn-primary pull-right hide" data-toggle="modal" id="btnTriggerAdEditGangMdl" data-target="#mdlGang" hidden><i class="fa fa-plus"></i> </button>
+<div class="modal" id="mdlGang" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <form class="modal-content" id="frmSaveGang">
+            <div class="modal-header">
+              @Model.proddesc
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+
+                    <div class="form-group">
+
+                        <div class="col-lg-4">
+                            <label for="txtGangName">Invoice No</label>
+                        </div>
+                        <div class="col-lg-8">
+
+                            <input type="text" name="txtGangName" value="@Model.invoiceno" id="invoiceno_id" class="form-control" placeholder="name" />
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-4">
+                            <label for="txtGangDesc">ProductId</label>
+                        </div>
+                        <div class="col-lg-8">
+
+                            <input type="text" name="txtGangDesc" id="prodid_id" value="@Model.prodid" class="form-control" placeholder="" />
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-4">
+                            <label for="txtGangDesc">HSN CODE</label>
+                        </div>
+                        <div class="col-lg-8">
+
+                            <input type="text" name="txtGangDesc" id="hsncode" value="" class="form-control" placeholder="" />
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-4">
+                            <label for="txtGangDesc">UOM</label>
+                        </div>
+                        <div class="col-lg-8">
+
+                            <input type="text" name="txtGangDesc" id="uom" value="@Model.uom" class="form-control" placeholder="" />
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-4">
+                            <label for="txtGangDesc">QTY</label>
+                        </div>
+                        <div class="col-lg-8">
+
+                            <input type="text" name="txtGangDesc" id="qty" value="" class="form-control" placeholder="" />
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-4">
+                            <label for="txtGangDesc">Rate</label>
+                        </div>
+                        <div class="col-lg-8">
+
+                            <input type="text" name="txtGangDesc" id="rate" value="" class="form-control" placeholder="" />
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-4">
+                            <label for="txtGangDesc">Amount</label>
+                        </div>
+                        <div class="col-lg-8">
+
+                            <input type="text" name="txtGangDesc" id="amount" value="" class="form-control" placeholder="" />
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-4">
+                            <label for="txtGangDesc">Discount</label>
+                        </div>
+                        <div class="col-lg-8">
+
+                            <input type="text" name="txtGangDesc" id="discount" value="" class="form-control" placeholder="" />
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-4">
+                            <label for="txtGangDesc">Value of supply</label>
+                        </div>
+                        <div class="col-lg-8">
+
+                            <input type="text" name="txtGangDesc" id="vos" value="" class="form-control" placeholder="" />
+                        </div>
+
+                    </div>
+
+                    <div id="data">
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" onclick="SaveGang()" data-dismiss="modal" class="btn pmd-ripple-effect btn-primary pmd-btn-raised">Save</a>
+                <a href="#" data-dismiss="modal" id="btnGangCancel" class="btn pmd-ripple-effect btn-danger pmd-btn-raised">Close</a>
+            </div>
+     
+        </form>
+    </div>
+</div>
+<script>
+    function SaveGang() {
+        savebp2model = {};
+        savebp2model.invoiceno = $('#invoiceno_id').val();
+        savebp2model.prodid = $('#prodid_id').val();
+        savebp2model.hsncode = $('#hsncode').val();
+        savebp2model.uom = $('#uom').val();
+        savebp2model.qty = $('#qty').val();
+        savebp2model.rate = $('#rate').val();
+        savebp2model.amount = $('#amount').val();
+        savebp2model.discount = $('#discount').val();
+        savebp2model.valueofsupply = $('#vos').val();
+        $.ajax({
+                type: "POST",
+                url: "@Url.Action("savebp2", "Dashboard")",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                cache: false,
+                async: false,
+                data: JSON.stringify(savebp2model),
+                success: function (data) {
+                    res = data.Message;
+                    code = data.StatusCode;
+                    alert(res);
+                   
+                }
+         });
+    }
+</script>

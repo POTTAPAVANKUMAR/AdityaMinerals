@@ -26,9 +26,25 @@ namespace AdityaMinerals.Controllers
         
         public ActionResult billgenerator()
         {
-            if(Session["UserName"]!=null)
+            List<ADM_M_BILLINGPRODUCTS> output1 = new List<ADM_M_BILLINGPRODUCTS>();
+            if (Session["UserName"]!=null)
             {
-                return View();
+                AdityamineralsEntities dbObj = new AdityamineralsEntities();
+                var output = dbObj.ADM_L_BILLINGPART1.Count();
+                if(output==0)
+                {
+                    DashboardBL obj = new DashboardBL();
+                    output1 = obj.getproductslist();
+                    ViewBag.invoiceno = 1;
+                }
+                else
+                {
+                    var op = dbObj.ADM_L_BILLINGPART1.Select(c=>c.InvoiceNo).DefaultIfEmpty(0).Max();
+                    ViewBag.invoiceno = op + 1;
+                    DashboardBL obj = new DashboardBL();
+                    output1 = obj.getproductslist();
+                }
+                return View(output1);
             }
             else
             {
@@ -119,6 +135,69 @@ namespace AdityaMinerals.Controllers
             });
             return Json(jsonresult, JsonRequestBehavior.AllowGet);
         }
-      
+
+        public ActionResult savebp1(req req)
+        {
+            if (Session["UserName"] != null)
+            {
+                using(AdityamineralsEntities objDB = new AdityamineralsEntities())
+                {
+                    req.uom = objDB.ADM_M_BILLINGPRODUCTS.Where(v => v.Sno == req.prodid).Select(c => c.UOM_Name).FirstOrDefault();
+                }
+                return PartialView("_editbillprod",req);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
+           
+        }
+        public dynamic savebp2(savebp2model req)
+        {
+            CommonOutput output = new CommonOutput();
+            if (Session["UserName"] != null)
+            {
+                DashboardBL bl = new DashboardBL();
+                output = bl.savebp2(req);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            return Json(output, JsonRequestBehavior.AllowGet);
+        }
+        public dynamic savebp11(savebp1model req)
+        {
+            CommonOutput output = new CommonOutput();
+            if (Session["UserName"] != null)
+            {
+                DashboardBL bl = new DashboardBL();
+                output = bl.savebp1(req);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            return Json(output, JsonRequestBehavior.AllowGet);
+        }
+        [HttpGet]
+        public ActionResult billslist()
+        {
+            if (Session["UserName"] != null)
+            {
+                List<ADM_L_BILLINGPART1> obj = new List<ADM_L_BILLINGPART1>();
+                using(AdityamineralsEntities objDB = new AdityamineralsEntities())
+                {
+                    obj = objDB.ADM_L_BILLINGPART1.ToList();
+                }
+                ViewBag.data = obj;
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
+        }
+
     }
 }

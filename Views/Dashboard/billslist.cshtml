@@ -1,0 +1,134 @@
+﻿@using AdityaMinerals.EntityModels
+@model List<ADM_L_BILLINGPART1>
+@{
+    ViewBag.Title = "billslist";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="backgrounda">
+<div class="form-group" style="position:center;padding-top:3%">
+
+    <table id="invoicetable" class="table table-responsive table-hover">
+        <thead>
+            <tr>
+                <th scope="col">
+                    INVOICE NO
+                </th>
+                <th scope="col">
+                    STATE
+                </th>
+                <th scope="col">
+                    STATE CODE
+                </th>
+                <th scope="col">
+                    DATE OF ISSUE
+                </th>
+                <th scope="col">
+                    BP NAME
+                </th>
+                <th scope="col">
+                    BP ADDRESS
+                </th>
+                <th scope="col">
+                    BP GSTIN
+                </th>
+                <th scope="col">
+                    BP STATE
+                </th>
+                <th scope="col">
+                    BP STATE CODE
+                </th>
+                <th scope="col">
+                    SP NAME
+                </th>
+                <th scope="col">
+                    SP ADDRESS
+                </th>
+                <th scope="col">
+                    SP GSTIN
+                </th>
+                <th scope="col">
+                    SP STATE
+                </th>
+                <th scope="col">
+                    SP STATE CODE
+                </th>
+                <th scope="col">
+                    PRINT
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.data)
+            {
+            <tr class="table-active">
+                <td scope="row">
+                   <a onclick="invoicesublist(@item.InvoiceNo)"> @item.InvoiceNo</a>
+                </td>
+                <td scope="row">
+                    @item.State_VC
+                </td>
+                <td scope="row">
+                    @item.StateCode
+                </td>
+                <td scope="row">
+                    @item.DateOfIssue
+                </td>
+                <td scope="row">
+                    @item.BP_Name_VC
+                </td>
+                <td scope="row">
+                    @item.BP_Address_VC
+                </td>
+                <td scope="row">
+                    @item.BP_Gstin_VC
+                </td>
+                <td scope="row">
+                    @item.BP_State_VC
+                </td>
+                <td scope="row">
+                    @item.BP_StateCode_VC
+                </td>
+                <td scope="row">
+                    @item.SP_Name_VC1
+                </td>
+                <td scope="row">
+                    @item.SP_Address_VC1
+                </td>
+                <td scope="row">
+                    @item.SP_Gstin_VC1
+                </td>
+                <td scope="row">
+                    @item.SP_State_VC1
+                </td>
+                <td scope="row">
+                    @item.SP_StateCode_VC1
+                </td>
+                <td>
+                    <button type="button" onclick="printbill(@item.InvoiceNo)" class="btn btn-primary vertical-center">PRINT</button>
+                </td>
+
+            </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+</div>
+<script>
+    uomdatatablea();
+    function uomdatatablea() {
+        $('#invoicetable').DataTable({
+            'iDisplayLength': 5, 
+            scrollX: true,
+            scrollCollapse: true,
+            columnDefs: [
+                { width: '20%', targets: 0 }
+            ],
+            fixedColumns: true,
+
+        });
+    }
+    function invoicesublist(dat) {
+
+    }
+</script>

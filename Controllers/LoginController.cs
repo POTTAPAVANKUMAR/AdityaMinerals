@@ -41,5 +41,11 @@ namespace AdityaMinerals.Controllers
             }
             return Json(output, JsonRequestBehavior.AllowGet);
         }
+        public dynamic logout()
+        {
+           
+            return RedirectToAction("GOOGLE.COM");
+           
+        }
     }
 }

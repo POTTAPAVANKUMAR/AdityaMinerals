@@ -55,5 +55,50 @@ namespace AdityaMinerals.BussinessLayer
             }
             return output;
         }
+        public List<ADM_M_BILLINGPRODUCTS> getproductslist()
+        {
+            List<ADM_M_BILLINGPRODUCTS> obj = new List<ADM_M_BILLINGPRODUCTS>();
+            try
+            {
+                DashbordDL obja = new DashbordDL();
+                obj = obja.getproductslist();
+            }
+            catch (Exception ex)
+            {
+            }
+            return obj;
+        }
+        public CommonOutput savebp2(savebp2model req)
+        {
+            CommonOutput output = new CommonOutput();
+            try
+            {
+                DashbordDL obj = new DashbordDL();
+                
+                output = obj.savebp2(req);
+
+            }
+            catch(Exception ex)
+            {
+
+            }
+            return output;
+        }
+        public CommonOutput savebp1(savebp1model req)
+        {
+            CommonOutput output = new CommonOutput();
+            try
+            {
+                DashbordDL obj = new DashbordDL();
+
+                output = obj.savebp1(req);
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return output;
+        }
     }
 }
