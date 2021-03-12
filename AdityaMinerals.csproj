@@ -246,6 +246,10 @@
     <Content Include="Views\Dashboard\_productslistview.cshtml" />
     <Content Include="Views\Dashboard\_editbillprod.cshtml" />
     <Content Include="Views\Dashboard\billslist.cshtml" />
+    <Content Include="Views\Dashboard\_invoicesublist.cshtml" />
+    <Content Include="Views\Dashboard\editbillgenerator.cshtml" />
+    <Content Include="Views\Dashboard\_productsedit.cshtml" />
+    <Content Include="Views\Dashboard\_editbillprodA.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

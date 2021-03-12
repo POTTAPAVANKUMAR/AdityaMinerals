@@ -150,6 +150,109 @@ namespace AdityaMinerals.DataAccessLayer
             }
             return output;
         }
+        public CommonOutput savebp1edit(savebp1model req)
+        {
+            CommonOutput output = new CommonOutput();
+            try
+            {
+                using (var objDB = new AdityamineralsEntities())
+                {
+                    SqlParameter state = new SqlParameter("@state", req.state);
+                    SqlParameter statecode = new SqlParameter("@statecode", req.statecode);
+                    SqlParameter date = new SqlParameter("@date", req.date);
+                    SqlParameter bpname = new SqlParameter("@bpname", req.bpname);
+                    SqlParameter bpaddress = new SqlParameter("@bpaddress", req.bpaddress);
+                    SqlParameter bpgstin = new SqlParameter("@bpgstin", req.bpgstin);
+                    SqlParameter bpstate = new SqlParameter("@bpstate", req.bpstate);
+                    SqlParameter bpstatecode = new SqlParameter("@bpstatecode", req.bpstatecode);
+                    SqlParameter spname = new SqlParameter("@spname", req.spname);
+                    SqlParameter spaddress = new SqlParameter("@spaddress", req.spaddress);
+                    SqlParameter spgstin = new SqlParameter("@spgstin", req.spgstin);
+                    SqlParameter spstate = new SqlParameter("@spstate", req.spstate);
+                    SqlParameter spstatecode = new SqlParameter("@spstatecode", req.spstatecode);
+                    output = objDB.Database.SqlQuery<CommonOutput>("[dbo].[ADM_SAVEBP1EDIT] @state,@statecode,@date,@bpname,@bpaddress,@bpgstin,@bpstate,@bpstatecode,@spname,@spaddress,@spgstin,@spstate,@spstatecode",
+                    state, statecode, date, bpname, bpaddress, bpgstin, bpstate, bpstatecode, spname, spaddress, spgstin, spstate, spstatecode).FirstOrDefault();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                output.StatusCode = 500;
+                output.Message = ex.Message;
+            }
+            return output;
+        }
+        public CommonOutput deletebill(string invono)
+        {
+            CommonOutput output = new CommonOutput();
+            try
+            {
+                if(invono == null)
+                {
+                    output.StatusCode = 500;
+                    output.Message = "ERROR - CONTACT PAVAN";
+                    return output;
+                }
+                using(AdityamineralsEntities objDB = new AdityamineralsEntities())
+                {
+                    SqlParameter invoice = new SqlParameter("@invoiceid", Convert.ToInt32(invono));
+                    output = objDB.Database.SqlQuery<CommonOutput>("[dbo].[ADM_DELINVOICE] @invoiceid", invoice).FirstOrDefault();
+                }
+
+            }
+            catch(Exception ex)
+            {
+                output.StatusCode = 500;
+                output.Message = ex.Message;
+            }
+            return output;
+        }
+        public CommonOutput deletesubbill(string invono,string id)
+        {
+            CommonOutput output = new CommonOutput();
+            try
+            {
+                if (invono == null)
+                {
+                    output.StatusCode = 500;
+                    output.Message = "ERROR - CONTACT PAVAN";
+                    return output;
+                }
+                using (AdityamineralsEntities objDB = new AdityamineralsEntities())
+                {
+                    SqlParameter invoice = new SqlParameter("@invoiceid", Convert.ToInt32(invono));
+                    SqlParameter ida = new SqlParameter("@id", Convert.ToInt32(id));
+                    output = objDB.Database.SqlQuery<CommonOutput>("[dbo].[ADM_DELSUBINVOICE] @invoiceid,@id", invoice,ida).FirstOrDefault();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                output.StatusCode = 500;
+                output.Message = ex.Message;
+            }
+            return output;
+        }
+
+        public billeditmain editbill(int bill)
+        {
+            billeditmain output = new billeditmain();
+            try
+            {
+               using(AdityamineralsEntities objDB = new AdityamineralsEntities())
+                {
+                    output.BP1 = objDB.ADM_L_BILLINGPART1.Where(c => c.InvoiceNo == bill).FirstOrDefault();
+                    output.BP2 = objDB.ADM_L_BILLINGPART2.Where(c => c.InvoiceNo == bill).ToList();
+                    output.BP3 = objDB.ADM_M_BILLINGPRODUCTS.ToList();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                
+            }
+            return output;
+        }
     }
     
    

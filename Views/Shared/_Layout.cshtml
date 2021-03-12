@@ -126,11 +126,14 @@
             background-color: #3d3d3d;
             padding: 10px;
             margin: 0 auto 100px;
-            font-family: "sans-serif", sans-serif;
+           
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             background-size: cover;
             border-radius: 10px;
+        }
+        body,head ,div,legend,a {
+            font-family:Arial, Arial;
         }
     </style>
     <meta charset="utf-8" />
@@ -186,6 +189,8 @@
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">BILLING</a>
                             <div class="dropdown-menu" style="background-color:#1d1d1d;border-radius:10PX;">
                                 <a href="@Url.Action("billgenerator", "Dashboard")" class="dropdown-item">Bill Generator</a>
+                                <div class="dropdown-divider"></div>
+                                <a href="@Url.Action("billslist", "Dashboard")" class="dropdown-item">Bills List</a>
                                 <div class="dropdown-divider"></div>
                                 <a href="@Url.Action("billingproducts", "Dashboard")" class="dropdown-item">Billing products</a>
 

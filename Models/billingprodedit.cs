@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using AdityaMinerals.EntityModels;
 namespace AdityaMinerals.Models
 {
     public class billingprodedit 
@@ -18,6 +18,8 @@ namespace AdityaMinerals.Models
         public long invoiceno { get; set; }
         public string proddesc { get; set; }
         public string uom { get; set; }
+        public ADM_L_BILLINGPART2 bp2 {get;set;}
+       
     }
     public class savebp2model
     {
@@ -47,5 +49,16 @@ namespace AdityaMinerals.Models
         public string spgstin { get; set; }
         public string spstate { get; set; }
         public int spstatecode { get; set; }
+    }
+    public class deletebill
+    {
+        public string invoiceno { get; set; }
+        public string id { get; set; }
+    }
+    public class billeditmain
+    {
+        public ADM_L_BILLINGPART1 BP1 { get; set; }
+        public List<ADM_L_BILLINGPART2> BP2 { get; set; }
+        public List<ADM_M_BILLINGPRODUCTS> BP3 { get; set; }
     }
 }

@@ -16,7 +16,6 @@
     #productslistdiv .list-group-item {
         /*cursor: pointer;*/
     }
-   
 </style>
 <div id="background">
     <div class="container row col-md-12">
@@ -94,23 +93,25 @@
             <hr />
             <div id="productslistdiv">
 
-                <ul class="list-group list-group-height " style="overflow-y: auto;">
+                <ul class="list-group list-group-height " style="overflow-y: scroll;">
                     @foreach (var item in Model)
                     {
                         <li class="list-group-item" data-prodid="@item.Sno" data-prodname="@item.ProductDescription">
                             @item.ProductDescription
                             <div class="float-lg-right">
-                                <button type="button" class="btn btn-primary btn-sm" onclick="productchecklist(@item.Sno)">Edit</button>
+                                <button type="button" class="btn btn-primary btn-sm" onclick="productchecklist(@item.Sno)">Add</button>
                             </div>
                         </li>
                     }
                 </ul>
             </div>
             <hr />
-            <br />
-            <input type="text" id="date_e" value="@DateTime.Now.ToString("mm/dd/yy")" hidden/>
+         
+            <input type="text" id="date_e" value="@DateTime.Now.ToString("MM/dd/yy")" hidden/>
             <button type="button" onclick="savebp1()" class="btn btn-primary vertical-center">&nbsp;&nbsp;&nbsp;&nbsp; Save all&nbsp;&nbsp;&nbsp;&nbsp;</button>
             <button type="button" onclick ="location.href ='billslist'" class="btn btn-primary vertical-center">&nbsp;&nbsp;&nbsp;Bills List&nbsp;&nbsp;&nbsp;</button>
+       <br />
+            <br />
         </div>
     </div>
 </div>

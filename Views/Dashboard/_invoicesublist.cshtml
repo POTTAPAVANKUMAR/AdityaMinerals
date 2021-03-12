@@ -1,0 +1,113 @@
+﻿@using AdityaMinerals.EntityModels;
+@model List<ADM_L_BILLINGPART2>
+<div class="form-group" style="position:center;padding-top:3%">
+
+    <table id="invoicetable1" class="table table-responsive table-hover">
+        <thead>
+            <tr>
+                <th scope="col">
+                    ID
+                </th>
+                <th scope="col">
+                    INVOICE NO
+                </th>
+                <th scope="col">
+                    PRODUCT
+                </th>
+                <th scope="col">
+                    HSN CODE
+                </th>
+                <th scope="col">
+                    UOM
+                </th>
+                <th scope="col">
+                    QTY
+                </th>
+                <th scope="col">
+                    RATE
+                </th>
+                <th scope="col">
+                    AMOUNT
+                </th>
+                <th scope="col">
+                    DISCOUNT
+                </th>
+                <th scope="col">
+                    VALUE OF SUPPLY
+                </th>
+                <th scope="col">
+                    Delete
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="table-active">
+                    <td scope="row">
+                        @item.ID
+                    </td>
+                    <td scope="row">
+                        @item.InvoiceNo
+                    </td>
+                    <td scope="row">
+                        @item.ProductionDescription_VC
+                    </td>
+                    <td scope="row">
+                        @item.HSNCODE_VC
+                    </td>
+                    <td scope="row">
+                        @item.UOM_VC
+                    </td>
+                    <td scope="row">
+                        @item.QTY
+                    </td>
+                    <td scope="row">
+                        @item.Rate
+                    </td>
+                    <td scope="row">
+                        @item.Amount
+                    </td>
+                    <td scope="row">
+                        @item.Discount
+                    </td>
+                    <td scope="row">
+                        @item.ValueofSupply
+                    </td>
+                    <td>
+                        <a href="#" onclick="delsub(@item.ID)">Delete</a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+    @foreach (var item in Model)
+    {
+        <input type="text" id="inv" hidden value="@item.InvoiceNo" />
+    }
+    </div>
+<script>
+    function delsub(val1) {
+
+
+
+        deletebill = {};
+        deletebill.invoiceno = $("#inv").val();
+        deletebill.id = val1;
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("deletesubbill", "Dashboard")",
+            dataType: "JSON",
+            contentType: "application/json; charset=utf-8",
+            cache: false,
+            async: false,
+            data: JSON.stringify(deletebill),
+            success: function (data) {
+                res = data.Message;
+                code = data.StatusCode;
+                alert(res);
+            }
+        });
+    }
+</script>

@@ -1,0 +1,190 @@
+﻿@using AdityaMinerals.Models
+@model billeditmain
+@{
+    ViewBag.Title = "editbillgenerator";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>jQuery UI Datepicker - Default functionality</title>
+<link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+      rel="stylesheet">
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+<style>
+ 
+</style>
+
+<div id="background">
+
+    <div class="container row col-md-12">
+
+        <div class="col-md-3" id="dashmaina">
+            <legend style="color:white">Supply bill</legend>
+            <hr />
+            <div class="form-group">
+                <label for="">Invoice No</label>
+                <input type="text" class="form-control" id="invoiceno" aria-describedby="emailHelp" placeholder="InvoiceNo" value=@Model.BP1.InvoiceNo readonly>
+            </div>
+            <div class="form-group">
+                <label for="">Date</label>
+                <input type="text" class="form-control" id="date1" aria-describedby="DATE" placeholder="MM-DD-YYYY" value=@Model.BP1.DateOfIssue>
+            </div>
+            <div class="form-group">
+                <label for="">State</label>
+                <input type="text" class="form-control" id="state1" aria-describedby="DATE" placeholder="state" value="@Model.BP1.State_VC">
+            </div>
+            <div class="form-group">
+                <label for="">State Code</label>
+                <input type="text" class="form-control" id="statecode1" aria-describedby="" placeholder="state name" value=@Model.BP1.StateCode>
+            </div>
+        </div>
+
+        <div class="col-md-3" id="dashmaina">
+            <legend style="color:white">Ship to party</legend>
+            <hr />
+            <div class="form-group">
+                <label for="">Name</label>
+                <input type="text" class="form-control" id="spname" aria-describedby="emailHelp" placeholder="Name" value=@Model.BP1.SP_Name_VC1>
+            </div>
+            <div class="form-group">
+                <label for="">Address</label>
+                <input type="text" class="form-control" id="spaddress" aria-describedby="" placeholder="Address" value=@Model.BP1.SP_Address_VC1>
+            </div>
+            <div class="form-group">
+                <label for="">GSTIN/UIN</label>
+                <input type="text" class="form-control" id="spgst" aria-describedby="" placeholder="GSTIN/UIN" value=@Model.BP1.SP_Gstin_VC1>
+            </div>
+            <div class="form-group">
+                <label for="">State</label>
+                <input type="text" class="form-control" id="state3" aria-describedby="DATE" placeholder="state" value=@Model.BP1.SP_State_VC1>
+            </div>
+            <div class="form-group">
+                <label for="">State Code</label>
+                <input type="text" class="form-control" id="statecode3" aria-describedby="" placeholder="state name" value=@Model.BP1.SP_StateCode_VC1 />
+            </div>
+        </div>
+        <div class="col-md-3" id="dashmaina">
+            <legend style="color:white">Bill to party</legend>
+            <hr />
+            <div class="form-group">
+                <label for="">Name</label>
+                <input type="text" class="form-control" id="bpname" aria-describedby="emailHelp" placeholder="Name" value=@Model.BP1.BP_Name_VC>
+            </div>
+            <div class="form-group">
+                <label for="">Address</label>
+                <input type="text" class="form-control" id="bpaddress" aria-describedby="" placeholder="Address" value=@Model.BP1.BP_Address_VC>
+            </div>
+            <div class="form-group">
+                <label for="">GSTIN/UIN</label>
+                <input type="text" class="form-control" id="bpgst" aria-describedby="" placeholder="GSTIN/UIN" value=@Model.BP1.BP_Gstin_VC>
+            </div>
+            <div class="form-group">
+                <label for="">State</label>
+                <input type="text" class="form-control" id="state2" aria-describedby="DATE" placeholder="state" value=@Model.BP1.BP_State_VC>
+            </div>
+            <div class="form-group">
+                <label for="">State Code</label>
+                <input type="text" class="form-control" id="statecode2" aria-describedby="" placeholder="state name" value=@Model.BP1.BP_StateCode_VC>
+            </div>
+        </div>
+        <div class="col-md-3" id="dashmaina">
+            <legend style="color:white">Billing Products</legend>
+            <hr />
+            <div id="productslistdiv">
+
+                <ul class="list-group list-group-height " style="overflow-y: scroll;">
+                    @foreach (var item in Model.BP3)
+                    {
+
+                        <li class="list-group-item" data-prodid="@item.Sno" data-prodname="@item.ProductDescription">
+                            @item.ProductDescription
+                            <div class="float-lg-right">
+                                <button type="button" class="btn btn-primary btn-sm" onclick="productchecklist(@item.Sno)">Edit</button>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <hr />
+
+            <input type="text" id="date_e" value="@DateTime.Now.ToString("MM/dd/yy")" hidden />
+            <button type="button" onclick="savebp1edit()" class="btn btn-primary vertical-center">&nbsp;&nbsp;&nbsp;&nbsp; Save All&nbsp;&nbsp;&nbsp;&nbsp;</button>
+             <button type="button" onclick="location.href ='billslist'" class="btn btn-primary vertical-center">&nbsp;&nbsp;&nbsp;Bills List&nbsp;&nbsp;&nbsp;</button>
+            <br />
+            <br />
+        </div>
+
+    </div>
+</div>
+
+<div id="dvModalHolder"></div>
+<script>
+    function savebp1edit() {
+        debugger;
+        savebp1model = {};
+        savebp1model.state = $('#state1').val();
+        savebp1model.statecode = $('#statecode1').val();
+        savebp1model.date = $('#date_e').val();
+
+        savebp1model.bpname = $('#bpname').val();
+        savebp1model.bpaddress = $('#bpaddress').val();
+        savebp1model.bpgstin = $('#bpgst').val();
+        savebp1model.bpstate = $('#state2').val();
+        savebp1model.bpstatecode = $('#statecode2').val();
+        savebp1model.spname = $('#spname').val();
+        savebp1model.spaddress = $('#spaddress').val();
+        savebp1model.spgstin = $('#spgst').val();
+        savebp1model.spstate = $('#state3').val();
+        savebp1model.spstatecode = $('#statecode3').val();
+         $.ajax({
+                type: "POST",
+                url: "@Url.Action("savebp11edit", "Dashboard")",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                cache: false,
+                async: false,
+                data: JSON.stringify(savebp1model),
+                success: function (data) {
+                    res = data.Message;
+                    code = data.StatusCode;
+                    alert(res);
+                    if (res = '200') {
+                        location.reload();
+                    }
+                }
+         });
+    }
+     function productchecklist(num) {
+        //alert(num);
+        debugger;
+        $(this).siblings().removeClass("active");
+            $(this).addClass("active");
+        let prodid = num;
+
+        req = {};
+         req.prodid = num;
+         req.invoiceno = $("#invoiceno").val();
+       
+            $.ajax({
+                type: "POST",
+                cache: false,
+                async: true,
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ "req": req }),
+                dataType: 'html',
+                url: "@Url.Action("savebp1", "Dashboard")",
+                success: function (data) {
+                    $('#dvModalHolder').html("");
+                    $('#dvModalHolder').html(data);
+                    $('#btnTriggerAdEditGangMdl').click();
+                },
+                error: function (e) {
+                    console.log(e)
+                }
+            });
+    }
+</script>

@@ -1,0 +1,13 @@
+﻿@using AdityaMinerals.Models
+@model billeditmain
+<ul class="list-group list-group-height " style="overflow-y: scroll;">
+    @foreach (var item in Model)
+    {
+        <li class="list-group-item" data-prodid="@item.Sno" data-prodname="@item.ProductDescription">
+            @item.ProductDescription
+            <div class="float-lg-right">
+                <button type="button" class="btn btn-primary btn-sm" onclick="productchecklist(@item.Sno)">Edit</button>
+            </div>
+        </li>
+    }
+</ul>

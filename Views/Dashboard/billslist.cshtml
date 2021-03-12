@@ -5,122 +5,145 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div id="backgrounda">
-<div class="form-group" style="position:center;padding-top:3%">
+    <div class="form-group" style="position:center;padding-top:3%">
 
-    <table id="invoicetable" class="table table-responsive table-hover">
-        <thead>
-            <tr>
-                <th scope="col">
-                    INVOICE NO
-                </th>
-                <th scope="col">
-                    STATE
-                </th>
-                <th scope="col">
-                    STATE CODE
-                </th>
-                <th scope="col">
-                    DATE OF ISSUE
-                </th>
-                <th scope="col">
-                    BP NAME
-                </th>
-                <th scope="col">
-                    BP ADDRESS
-                </th>
-                <th scope="col">
-                    BP GSTIN
-                </th>
-                <th scope="col">
-                    BP STATE
-                </th>
-                <th scope="col">
-                    BP STATE CODE
-                </th>
-                <th scope="col">
-                    SP NAME
-                </th>
-                <th scope="col">
-                    SP ADDRESS
-                </th>
-                <th scope="col">
-                    SP GSTIN
-                </th>
-                <th scope="col">
-                    SP STATE
-                </th>
-                <th scope="col">
-                    SP STATE CODE
-                </th>
-                <th scope="col">
-                    PRINT
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in ViewBag.data)
-            {
-            <tr class="table-active">
-                <td scope="row">
-                   <a onclick="invoicesublist(@item.InvoiceNo)"> @item.InvoiceNo</a>
-                </td>
-                <td scope="row">
-                    @item.State_VC
-                </td>
-                <td scope="row">
-                    @item.StateCode
-                </td>
-                <td scope="row">
-                    @item.DateOfIssue
-                </td>
-                <td scope="row">
-                    @item.BP_Name_VC
-                </td>
-                <td scope="row">
-                    @item.BP_Address_VC
-                </td>
-                <td scope="row">
-                    @item.BP_Gstin_VC
-                </td>
-                <td scope="row">
-                    @item.BP_State_VC
-                </td>
-                <td scope="row">
-                    @item.BP_StateCode_VC
-                </td>
-                <td scope="row">
-                    @item.SP_Name_VC1
-                </td>
-                <td scope="row">
-                    @item.SP_Address_VC1
-                </td>
-                <td scope="row">
-                    @item.SP_Gstin_VC1
-                </td>
-                <td scope="row">
-                    @item.SP_State_VC1
-                </td>
-                <td scope="row">
-                    @item.SP_StateCode_VC1
-                </td>
-                <td>
-                    <button type="button" onclick="printbill(@item.InvoiceNo)" class="btn btn-primary vertical-center">PRINT</button>
-                </td>
+        <table id="invoicetable" class="table table-responsive table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        INVOICE NO
+                    </th>
+                    <th scope="col">
+                        STATE
+                    </th>
+                    <th scope="col">
+                        STATE CODE
+                    </th>
+                    <th scope="col">
+                        DATE OF ISSUE
+                    </th>
+                    <th scope="col">
+                        BP NAME
+                    </th>
+                    <th scope="col">
+                        BP ADDRESS
+                    </th>
+                    <th scope="col">
+                        BP GSTIN
+                    </th>
+                    <th scope="col">
+                        BP STATE
+                    </th>
+                    <th scope="col">
+                        BP STATE CODE
+                    </th>
+                    <th scope="col">
+                        SP NAME
+                    </th>
+                    <th scope="col">
+                        SP ADDRESS
+                    </th>
+                    <th scope="col">
+                        SP GSTIN
+                    </th>
+                    <th scope="col">
+                        SP STATE
+                    </th>
+                    <th scope="col">
+                        SP STATE CODE
+                    </th>
+                    <th scope="col">
+                        Edit
+                        </th>
+                    <th scope="col">
+                        Del
+                    </th>
+                    <th scope="col">
+                        PRINT
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ViewBag.data)
+                {
+                <tr class="table-active">
+                    <td scope="row">
+                        <a href="#" onclick="invoicesublist(@item.InvoiceNo)"> @item.InvoiceNo</a>
+                    </td>
+                    <td scope="row">
+                        @item.State_VC
+                    </td>
+                    <td scope="row">
+                        @item.StateCode
+                    </td>
+                    <td scope="row">
+                        @item.DateOfIssue
+                    </td>
+                    <td scope="row">
+                        @item.BP_Name_VC
+                    </td>
+                    <td scope="row">
+                        @item.BP_Address_VC
+                    </td>
+                    <td scope="row">
+                        @item.BP_Gstin_VC
+                    </td>
+                    <td scope="row">
+                        @item.BP_State_VC
+                    </td>
+                    <td scope="row">
+                        @item.BP_StateCode_VC
+                    </td>
+                    <td scope="row">
+                        @item.SP_Name_VC1
+                    </td>
+                    <td scope="row">
+                        @item.SP_Address_VC1
+                    </td>
+                    <td scope="row">
+                        @item.SP_Gstin_VC1
+                    </td>
+                    <td scope="row">
+                        @item.SP_State_VC1
+                    </td>
+                    <td scope="row">
+                        @item.SP_StateCode_VC1
+                    </td>
+                    <td>
+                        <a href="@Url.Action("editbillgenerator", "Dashboard")?invoiceno= @item.InvoiceNo">Edit</a>
+                        
+                    </td>
+                    <td>
+                        <a href="#" onclick="deletebill(@item.InvoiceNo)">Del</a>
+                    </td>
+                    <td>
+                        <a href="#" onclick="printbill(@item.InvoiceNo)">Print</a>
+                    </td>
 
-            </tr>
-            }
-        </tbody>
-    </table>
+                </tr>
+                }
+            </tbody>
+        </table>
 
+    </div>
+  
 </div>
-</div>
+<div id="aaa">
+<div id="backgrounda" class="aaa">
+    <div id="secondtable" style="padding-left:15%;">
+
+    </div>
+    </div>
+    </div>
 <script>
+
     uomdatatablea();
     function uomdatatablea() {
         $('#invoicetable').DataTable({
-            'iDisplayLength': 5, 
+            'iDisplayLength': 3,
             scrollX: true,
             scrollCollapse: true,
+            scrollY: true,
             columnDefs: [
                 { width: '20%', targets: 0 }
             ],
@@ -129,6 +152,71 @@
         });
     }
     function invoicesublist(dat) {
+         deletebill = {};
+        deletebill.invoiceno =  dat;
+         $.ajax({
+             type: "GET",
+             url: "@Url.Action("invoicesublist", "Dashboard")" + "?invoiceno=" + dat,
+                cache: false,
+                async: false,
 
-    }
+             success: function (data) {
+                 $("#aaa").show();
+                 //alert(data);
+                 $("#secondtable").html("");
+                 $("#secondtable").html(data);
+                 func();
+                }
+         });
+        }
+        function func() {
+            $('#invoicetable1').DataTable({
+                'iDisplayLength': 5,
+                scrollX: true,
+                scrollCollapse: true,
+                scrollY: true,
+                columnDefs: [
+                    { width: '20%', targets: 0 }
+                ],
+                fixedColumns: true,
+
+            });
+        }
+    function deletebill(invon) {
+        deletebill = {};
+        deletebill.invoiceno =  invon;
+         $.ajax({
+                type: "POST",
+                url: "@Url.Action("deletebill", "Dashboard")",
+                dataType: "JSON",
+                contentType: "application/json; charset=utf-8",
+                cache: false,
+                async: false,
+                data: JSON.stringify(deletebill),
+                success: function (data) {
+                    res = data.Message;
+                    code = data.StatusCode;
+                    alert(res);
+                }
+         });
+        }
+        function editbill(value) {
+            deletebill = {};
+            deletebill.invoiceno = value;
+            
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("editbillgeneratora", "Dashboard")"+"?invoiceno=" + value,
+                dataType: "JSON",
+                contentType: "application/json; charset=utf-8",
+                cache: false,
+                async: false,
+                data: JSON.stringify(deletebill),
+                success: function (data) {
+                    res = data.Message;
+                    code = data.StatusCode;
+                    //alert(res);
+                }
+         });
+        }
 </script>

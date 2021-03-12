@@ -100,5 +100,49 @@ namespace AdityaMinerals.BussinessLayer
             }
             return output;
         }
+        public CommonOutput savebp1edit(savebp1model req)
+        {
+            CommonOutput output = new CommonOutput();
+            try
+            {
+                DashbordDL obj = new DashbordDL();
+
+                output = obj.savebp1edit(req);
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return output;
+        }
+        public CommonOutput deletebill(string invono)
+        {
+            CommonOutput output = new CommonOutput();
+            try
+            {
+                DashbordDL obj = new DashbordDL();
+                output = obj.deletebill(invono);
+            }
+            catch(Exception ex)
+            {
+
+            }
+            return output;
+        }
+        public CommonOutput deletesubbill(string invono,string id)
+        {
+            CommonOutput output = new CommonOutput();
+            try
+            {
+                DashbordDL obj = new DashbordDL();
+                output = obj.deletesubbill(invono,id);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return output;
+        }
     }
 }

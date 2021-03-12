@@ -1,4 +1,5 @@
 ﻿using AdityaMinerals.BussinessLayer;
+using AdityaMinerals.DataAccessLayer;
 using AdityaMinerals.EntityModels;
 using AdityaMinerals.Models;
 using System;
@@ -143,8 +144,18 @@ namespace AdityaMinerals.Controllers
                 using(AdityamineralsEntities objDB = new AdityamineralsEntities())
                 {
                     req.uom = objDB.ADM_M_BILLINGPRODUCTS.Where(v => v.Sno == req.prodid).Select(c => c.UOM_Name).FirstOrDefault();
+                    int count = objDB.ADM_L_BILLINGPART2.Where(c => c.InvoiceNo == req.invoiceno && c.Sno == req.prodid).Count();
+                    if (count > 0)
+                    {
+                        req.bp2 = objDB.ADM_L_BILLINGPART2.Where(c => c.InvoiceNo == req.invoiceno && c.Sno == req.prodid).FirstOrDefault();
+                        return PartialView("_editbillprod", req);
+                    }
+                    else
+                    {
+                        return PartialView("_editbillprodA", req);
+                    }
                 }
-                return PartialView("_editbillprod",req);
+               
             }
             else
             {
@@ -180,6 +191,20 @@ namespace AdityaMinerals.Controllers
             }
             return Json(output, JsonRequestBehavior.AllowGet);
         }
+        public dynamic savebp11edit(savebp1model req)
+        {
+            CommonOutput output = new CommonOutput();
+            if (Session["UserName"] != null)
+            {
+                DashboardBL bl = new DashboardBL();
+                output = bl.savebp1edit(req);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            return Json(output, JsonRequestBehavior.AllowGet);
+        }
         [HttpGet]
         public ActionResult billslist()
         {
@@ -192,6 +217,83 @@ namespace AdityaMinerals.Controllers
                 }
                 ViewBag.data = obj;
                 return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
+        }
+
+      
+        public dynamic deletebill(deletebill bill)
+        {
+            CommonOutput output = new CommonOutput();
+            string invono = bill.invoiceno;
+            if(Session["UserName"]!=null)
+            {
+                DashboardBL obj = new DashboardBL();
+                output = obj.deletebill(invono);
+                return Json(output, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
+        }
+        public dynamic deletesubbill(deletebill bill)
+        {
+            CommonOutput output = new CommonOutput();
+            string invono = bill.invoiceno;
+            if (Session["UserName"] != null)
+            {
+                DashboardBL obj = new DashboardBL();
+                output = obj.deletesubbill(invono,bill.id);
+                return Json(output, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
+        }
+        [HttpGet]
+        public ActionResult invoicesublist(int invoiceno)
+        {
+            List<ADM_L_BILLINGPART2> obj = new List<ADM_L_BILLINGPART2>();
+            if (Session["UserName"] != null)
+            {
+                AdityamineralsEntities objDB = new AdityamineralsEntities();
+                obj = objDB.ADM_L_BILLINGPART2.Where(c=>c.InvoiceNo==invoiceno).ToList();
+                return PartialView("_invoicesublist", obj);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
+        }
+        [HttpGet]
+        public ActionResult editbillgenerator(int invoiceno)
+        {
+            if(Session["Username"]!=null)
+            {
+                billeditmain output = new billeditmain();
+                DashbordDL bl = new DashbordDL();
+                output = bl.editbill(Convert.ToInt32(invoiceno));
+                return View(output);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
+        }
+        [HttpGet]
+        public ActionResult editbillslist(int invoiceno)
+        {
+            if (Session["UserName"] != null)
+            {
+                List<ADM_L_BILLINGPART2> obj = new List<ADM_L_BILLINGPART2>();
+                AdityamineralsEntities objDB = new AdityamineralsEntities();
+                obj = objDB.ADM_L_BILLINGPART2.Where(c => c.InvoiceNo == invoiceno).ToList();
+                return PartialView("_productsedit", obj);
             }
             else
             {
