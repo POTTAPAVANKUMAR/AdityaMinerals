@@ -4,14 +4,21 @@
     ViewBag.Title = "billslist";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div id="backgrounda">
-    <div class="form-group" style="position:center;padding-top:3%">
+    <div class="form-group" style="position:center;padding-top:3%;overflow-x:auto">
 
         <table id="invoicetable" class="table table-responsive table-hover">
             <thead>
                 <tr>
                     <th scope="col">
                         INVOICE NO
+                    </th>
+                    <th scope="col">
+
+                    </th>
+                    <th scope="col">
+
                     </th>
                     <th scope="col">
                         STATE
@@ -52,14 +59,10 @@
                     <th scope="col">
                         SP STATE CODE
                     </th>
+
+
                     <th scope="col">
-                        Edit
-                        </th>
-                    <th scope="col">
-                        Del
-                    </th>
-                    <th scope="col">
-                        PRINT
+
                     </th>
                 </tr>
             </thead>
@@ -69,6 +72,14 @@
                 <tr class="table-active">
                     <td scope="row">
                         <a href="#" onclick="invoicesublist(@item.InvoiceNo)"> @item.InvoiceNo</a>
+                    </td>
+
+                    <td>
+                        <a href="@Url.Action("editbillgenerator", "Dashboard")?invoiceno= @item.InvoiceNo"><i class="fa fa-edit"></i></a>
+
+                    </td>
+                    <td>
+                        <a href="@Url.Action("BillPdf", "PDF")?Invoiceid= @item.InvoiceNo"><i class="fa fa-print"></i></a>
                     </td>
                     <td scope="row">
                         @item.State_VC
@@ -109,16 +120,11 @@
                     <td scope="row">
                         @item.SP_StateCode_VC1
                     </td>
+
                     <td>
-                        <a href="@Url.Action("editbillgenerator", "Dashboard")?invoiceno= @item.InvoiceNo">Edit</a>
-                        
+                        <a href="#" onclick="deletebilll(@item.InvoiceNo)"><i class="fa fa-trash"></i></a>
                     </td>
-                    <td>
-                        <a href="#" onclick="deletebill(@item.InvoiceNo)">Del</a>
-                    </td>
-                    <td>
-                        <a href="#" onclick="printbill(@item.InvoiceNo)">Print</a>
-                    </td>
+
 
                 </tr>
                 }
@@ -138,6 +144,7 @@
 <script>
 
     uomdatatablea();
+
     function uomdatatablea() {
         $('#invoicetable').DataTable({
             'iDisplayLength': 3,
@@ -172,9 +179,8 @@
         function func() {
             $('#invoicetable1').DataTable({
                 'iDisplayLength': 5,
-                scrollX: true,
-                scrollCollapse: true,
-                scrollY: true,
+
+
                 columnDefs: [
                     { width: '20%', targets: 0 }
                 ],
@@ -182,7 +188,7 @@
 
             });
         }
-    function deletebill(invon) {
+    function deletebilll(invon) {
         deletebill = {};
         deletebill.invoiceno =  invon;
          $.ajax({
@@ -197,13 +203,25 @@
                     res = data.Message;
                     code = data.StatusCode;
                     alert(res);
+                     $.ajax({
+                type: "GET",
+                url: "@Url.Action("billslist", "Dashboard")",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                cache: false,
+                async: false,
+
+                success: function (data) {
+
+                }
+         });
                 }
          });
         }
         function editbill(value) {
             deletebill = {};
             deletebill.invoiceno = value;
-            
+
             $.ajax({
                 type: "GET",
                 url: "@Url.Action("editbillgeneratora", "Dashboard")"+"?invoiceno=" + value,

@@ -5,6 +5,7 @@ using AdityaMinerals.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 using System.Web;
 using System.Web.Mvc;
 
@@ -182,6 +183,7 @@ namespace AdityaMinerals.Controllers
             CommonOutput output = new CommonOutput();
             if (Session["UserName"] != null)
             {
+               
                 DashboardBL bl = new DashboardBL();
                 output = bl.savebp1(req);
             }
@@ -300,6 +302,27 @@ namespace AdityaMinerals.Controllers
                 return RedirectToAction("Login", "Login");
             }
         }
+        public dynamic graph1()
+        {
+
+            if (Session["UserName"] != null)
+            {
+                using(AdityamineralsEntities objDB = new AdityamineralsEntities())
+                {
+                    var output = objDB.Database.SqlQuery<graph1>("[dbo].[ADM_CHART1]").ToList();
+                    var output1 = objDB.Database.SqlQuery<graph1>("[dbo].[ADM_CHART1]").Count();
+                    op ob = new op();
+                    ob.output = output;
+                    ob.output1 = Convert.ToString(output1);
+                    return Json(ob, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
+        }
+       
 
     }
 }

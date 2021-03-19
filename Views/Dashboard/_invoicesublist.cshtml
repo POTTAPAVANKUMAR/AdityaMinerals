@@ -36,7 +36,7 @@
                     VALUE OF SUPPLY
                 </th>
                 <th scope="col">
-                    Delete
+                  
                 </th>
             </tr>
         </thead>
@@ -75,7 +75,7 @@
                         @item.ValueofSupply
                     </td>
                     <td>
-                        <a href="#" onclick="delsub(@item.ID)">Delete</a>
+                        <a href="#" onclick="delsub(@item.ID)"><i class="fa fa-trash"></i></a>
                     </td>
 
                 </tr>
@@ -107,6 +107,18 @@
                 res = data.Message;
                 code = data.StatusCode;
                 alert(res);
+                 $.ajax({
+                type: "GET",
+                url: "@Url.Action("billslist", "Dashboard")",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                cache: false,
+                async: false,
+
+                success: function (data) {
+
+                }
+         });
             }
         });
     }

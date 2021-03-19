@@ -3,67 +3,168 @@
     ViewBag.Title = "MainDashboard";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div id="backgrounda">
-<div class="col-md-12 container row"style="padding-left:60px;">
-    <div class="col-md-4">
-        <div class="card border-primary mb-3" style="max-width: 20rem;">
-            <div class="card-header">Header</div>
-            <div class="card-body">
-                <h4 class="card-title">Primary card title</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-        </div>
-        <br />
-        <hr />
-        <br />
-        <div class="card border-primary mb-3" style="max-width: 20rem;">
-            <div class="card-header">Header</div>
-            <div class="card-body">
-                <h4 class="card-title">Primary card title</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-        </div>
+
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+    var data1 = '';
+      $(document).ready(function () {
+        $.ajax({
+            type: "POST",
+            cache: false,
+            async: true,
+            contentType: "application/json; charset=utf-8",
+
+            dataType: 'html',
+            url: "@Url.Action("graph1", "Dashboard")",
+            success: function (data) {
+
+                data1 = data;
+
+            },
+            error: function (e) {
+                console.log(e)
+            }
+        });
+    });
+    google.charts.load('current', { packages: ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        debugger;
+        // Define the chart to be drawn.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', '');
+        data.addColumn('number', '');
+        data1 = JSON.parse(data1);
+       // alert(data1.output1);
+        // alert(data1.output[i].PD);
        
-    </div>
-    <div class="col-md-4">
-        <div class="card border-primary mb-3" style="max-width: 20rem;">
-            <div class="card-header">Header</div>
-            <div class="card-body">
-                <h4 class="card-title">Primary card title</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-        </div>
-        <br />
-        <hr />
-        <br />
-        <div class="card border-primary mb-3" style="max-width: 20rem;">
-            <div class="card-header">Header</div>
-            <div class="card-body">
-                <h4 class="card-title">Primary card title</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-        </div>
+        for (var i = 0; i < data1.output1; i++) {
+            data.addRow([data1.output[i].PD, data1.output[i].QTY]);
+        }
+        //data.addRows([
+        //    ['Nitrogen', 0.78],
+        //    ['Oxygen', 0.21],
+        //    ['Other', 0.01]
+        //]);
+        var options = {
+            title: '',
+            backgroundColor: '#1d1d1d',
+             chartArea: {
+                            height: '100%',
+                            width: '100%',
+                            top: 48,
+                            left: 48,
+                            right: 16,
+                            bottom: 48
+                        },
+                        height: 410,
+                        width: '100%',
+                        legend: {
+                          
+                            textStyle: { color: "#FFF", fontSize: 14, fontName: "Roboto" },
+                        },
+                        chart: {
+                            title: "",
+                        },
+                        chartArea: {
+                            backgroundColor: "#15274b",
+                        },
+                        hAxis: {
+                            textPosition: "top",
+                            textStyle: { color: "#FFF" },
+                        },
+                        vAxis: {
+                            minValue: 0,
+                            textStyle: { color: "#FFF" },
+                            gridlines: {
+                                color: "transparent",
+                            },
+                            },
+                        bars: "vertical", // Required for Material Bar Charts.
+                        axes: {
+                            y: {
+                                0: { side: "top", label: "Projects" }, // Top x-axis.
+                            },
+                        },
+                        bar: { groupWidth: "20%" },
+                        legend: {
+                            
+                            textStyle: { color: "#FFF", fontSize: 12, fontName: "Roboto" },
+                        },
+                        bar: { groupWidth: '20%' },
+                        isStacked: true,
+            titleTextStyle: {
+                color: "#FFF",
+                fontSize: 30,
+                fontName: "Roboto",
+                bold: true,
+            },
+            is3D: true,
+        };
+        var options1 = {
+            title: '',
+            backgroundColor: '#1d1d1d',
+            chartArea: {
+                height: '100%',
+                width: '100%',
+                top: 48,
+                left: 48,
+                right: 16,
+                bottom: 48
+            },
+            hAxis: {
+                textPosition: "top",
+                textStyle: { color: "#FFF" },
+            },
+            vAxis: {
+                minValue: 0,
+                textStyle: { color: "#FFF" },
+                gridlines: {
+                    color: "transparent",
+                },
+            },
+            height: 410,
+            width: '100%',
+           
+            is3D: true,
+        };
+        // Instantiate and draw the chart.
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        debugger;
+        chart.draw(data, options);
+        var chart1 = new google.visualization.ColumnChart(document.getElementById('chart_div1'));
+        debugger;
+        chart1.draw(data, options1);
+    }
+</script>
+<div id="backgrounda">
+    <br />
+    <br />
+    <br /><br /><br />
+    <div class="col-md-12 container row" style="padding-left:60px;">
+        <div class="col-md-6">
+            <div class="card border-primary mb-6" style="max-width: 40rem;">
+                <div class="card-header"></div>
+                <div class="card-body">
+                    <div id="chart_div">
 
-    </div>
-    <div class="col-md-4">
-        <div class="card border-primary mb-3" style="max-width: 20rem;">
-            <div class="card-header">Header</div>
-            <div class="card-body">
-                <h4 class="card-title">Primary card title</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
             </div>
-        </div>
-        <br />
-        <hr />
-        <br />
-        <div class="card border-primary mb-3" style="max-width: 20rem;">
-            <div class="card-header">Header</div>
-            <div class="card-body">
-                <h4 class="card-title">Primary card title</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-        </div>
 
+        </div>
+        <div class="col-md-6">
+            <div class="card border-primary mb-6" style="max-width: 40rem;">
+                <div class="card-header"></div>
+                <div class="card-body">
+                    <div id="chart_div1"></div>
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
-</div>
+<script>
+   
+</script>

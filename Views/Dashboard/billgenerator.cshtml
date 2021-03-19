@@ -107,7 +107,7 @@
             </div>
             <hr />
          
-            <input type="text" id="date_e" value="@DateTime.Now.ToString("MM/dd/yy")" hidden/>
+            <input type="text" id="date_e" value="@DateTime.Now" hidden/>
             <button type="button" onclick="savebp1()" class="btn btn-primary vertical-center">&nbsp;&nbsp;&nbsp;&nbsp; Save all&nbsp;&nbsp;&nbsp;&nbsp;</button>
             <button type="button" onclick ="location.href ='billslist'" class="btn btn-primary vertical-center">&nbsp;&nbsp;&nbsp;Bills List&nbsp;&nbsp;&nbsp;</button>
        <br />
@@ -167,6 +167,7 @@
         savebp1model.state = $('#state1').val();
         savebp1model.statecode = $('#statecode1').val();
         savebp1model.date = $('#date_e').val();
+       
         savebp1model.bpname = $('#bpname').val();
         savebp1model.bpaddress = $('#bpaddress').val();
         savebp1model.bpgstin = $('#bpgst').val();

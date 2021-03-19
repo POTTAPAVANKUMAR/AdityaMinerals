@@ -1,0 +1,513 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AdityamineralsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Adityaminerals.dbo.ADM_L_BILLINGPART1' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ADM_L_BILLINGPART1">
+          <Key>
+            <PropertyRef Name="InvoiceNo" />
+          </Key>
+          <Property Name="InvoiceNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="State_VC" Type="nvarchar(max)" />
+          <Property Name="StateCode" Type="int" />
+          <Property Name="DateOfIssue" Type="datetime" />
+          <Property Name="BP_Name_VC" Type="nvarchar(max)" />
+          <Property Name="BP_Address_VC" Type="nvarchar(max)" />
+          <Property Name="BP_Gstin_VC" Type="nvarchar(max)" />
+          <Property Name="BP_State_VC" Type="nvarchar(max)" />
+          <Property Name="BP_StateCode_VC" Type="nvarchar(max)" />
+          <Property Name="SP_Name_VC1" Type="nvarchar(max)" />
+          <Property Name="SP_Address_VC1" Type="nvarchar(max)" />
+          <Property Name="SP_Gstin_VC1" Type="nvarchar(max)" />
+          <Property Name="SP_State_VC1" Type="nvarchar(max)" />
+          <Property Name="SP_StateCode_VC1" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Adityaminerals.dbo.ADM_L_BILLINGPART2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ADM_L_BILLINGPART2">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InvoiceNo" Type="int" />
+          <Property Name="ProductionDescription_VC" Type="varchar(max)" />
+          <Property Name="HSNCODE_VC" Type="nchar" MaxLength="10" />
+          <Property Name="UOM_VC" Type="nchar" MaxLength="10" />
+          <Property Name="QTY" Type="int" />
+          <Property Name="Rate" Type="int" />
+          <Property Name="Amount" Type="int" />
+          <Property Name="Discount" Type="int" />
+          <Property Name="ValueofSupply" Type="int" />
+          <Property Name="Sno" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Adityaminerals.dbo.ADM_M_BILLINGPRODUCTS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ADM_M_BILLINGPRODUCTS">
+          <Key>
+            <PropertyRef Name="Sno" />
+          </Key>
+          <Property Name="Sno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductDescription" Type="varchar" MaxLength="50" />
+          <Property Name="UOM_Id" Type="int" />
+          <Property Name="UOM_Name" Type="varchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Adityaminerals.dbo.ADM_M_UOM' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ADM_M_UOM">
+          <Key>
+            <PropertyRef Name="UOM_ID" />
+          </Key>
+          <Property Name="UOM_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UOMName_VC" Type="varchar(max)" />
+          <Property Name="UOMDesc_VC" Type="varchar(max)" />
+          <Property Name="SINGLEQTY" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Adityaminerals.dbo.ADM_M_USER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ADM_M_USER">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <Function Name="ADM_ADDEDITBILLINGPRODUCTS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SNO" Type="int" Mode="In" />
+          <Parameter Name="name" Type="varchar(max)" Mode="In" />
+          <Parameter Name="uomID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ADM_ADDEDITUOM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="uomid" Type="int" Mode="In" />
+          <Parameter Name="uomname" Type="varchar(max)" Mode="In" />
+          <Parameter Name="uomdesc" Type="varchar(max)" Mode="In" />
+          <Parameter Name="singleqty" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ADM_DELINVOICE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="invoiceid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ADM_DELSUBINVOICE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="invoiceid" Type="int" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ADM_SAVEBP1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="state" Type="varchar(max)" Mode="In" />
+          <Parameter Name="statecode" Type="int" Mode="In" />
+          <Parameter Name="date" Type="date" Mode="In" />
+          <Parameter Name="bpname" Type="varchar(max)" Mode="In" />
+          <Parameter Name="bpaddress" Type="varchar(max)" Mode="In" />
+          <Parameter Name="bpgstin" Type="varchar(max)" Mode="In" />
+          <Parameter Name="bpstate" Type="varchar(max)" Mode="In" />
+          <Parameter Name="bpstatecode" Type="int" Mode="In" />
+          <Parameter Name="spname" Type="varchar(max)" Mode="In" />
+          <Parameter Name="spaddress" Type="varchar(max)" Mode="In" />
+          <Parameter Name="spgstin" Type="varchar(max)" Mode="In" />
+          <Parameter Name="spstate" Type="varchar(max)" Mode="In" />
+          <Parameter Name="spstatecode" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ADM_SAVEBP1EDIT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="state" Type="varchar(max)" Mode="In" />
+          <Parameter Name="statecode" Type="int" Mode="In" />
+          <Parameter Name="date" Type="date" Mode="In" />
+          <Parameter Name="bpname" Type="varchar(max)" Mode="In" />
+          <Parameter Name="bpaddress" Type="varchar(max)" Mode="In" />
+          <Parameter Name="bpgstin" Type="varchar(max)" Mode="In" />
+          <Parameter Name="bpstate" Type="varchar(max)" Mode="In" />
+          <Parameter Name="bpstatecode" Type="int" Mode="In" />
+          <Parameter Name="spname" Type="varchar(max)" Mode="In" />
+          <Parameter Name="spaddress" Type="varchar(max)" Mode="In" />
+          <Parameter Name="spgstin" Type="varchar(max)" Mode="In" />
+          <Parameter Name="spstate" Type="varchar(max)" Mode="In" />
+          <Parameter Name="spstatecode" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ADM_SAVEBP2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="InvoiceNo" Type="int" Mode="In" />
+          <Parameter Name="proddesc" Type="varchar(max)" Mode="In" />
+          <Parameter Name="hsncode" Type="varchar(max)" Mode="In" />
+          <Parameter Name="uom" Type="varchar(max)" Mode="In" />
+          <Parameter Name="qty" Type="int" Mode="In" />
+          <Parameter Name="rate" Type="int" Mode="In" />
+          <Parameter Name="amount" Type="int" Mode="In" />
+          <Parameter Name="discount" Type="int" Mode="In" />
+          <Parameter Name="valueofsupply" Type="int" Mode="In" />
+          <Parameter Name="prodid" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="AdityamineralsModelStoreContainer">
+          <EntitySet Name="ADM_L_BILLINGPART1" EntityType="Self.ADM_L_BILLINGPART1" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ADM_L_BILLINGPART1].[InvoiceNo] AS [InvoiceNo], 
+    [ADM_L_BILLINGPART1].[State_VC] AS [State_VC], 
+    [ADM_L_BILLINGPART1].[StateCode] AS [StateCode], 
+    [ADM_L_BILLINGPART1].[DateOfIssue] AS [DateOfIssue], 
+    [ADM_L_BILLINGPART1].[BP_Name_VC] AS [BP_Name_VC], 
+    [ADM_L_BILLINGPART1].[BP_Address_VC] AS [BP_Address_VC], 
+    [ADM_L_BILLINGPART1].[BP_Gstin_VC] AS [BP_Gstin_VC], 
+    [ADM_L_BILLINGPART1].[BP_State_VC] AS [BP_State_VC], 
+    [ADM_L_BILLINGPART1].[BP_StateCode_VC] AS [BP_StateCode_VC], 
+    [ADM_L_BILLINGPART1].[SP_Name_VC1] AS [SP_Name_VC1], 
+    [ADM_L_BILLINGPART1].[SP_Address_VC1] AS [SP_Address_VC1], 
+    [ADM_L_BILLINGPART1].[SP_Gstin_VC1] AS [SP_Gstin_VC1], 
+    [ADM_L_BILLINGPART1].[SP_State_VC1] AS [SP_State_VC1], 
+    [ADM_L_BILLINGPART1].[SP_StateCode_VC1] AS [SP_StateCode_VC1]
+    FROM [dbo].[ADM_L_BILLINGPART1] AS [ADM_L_BILLINGPART1]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ADM_L_BILLINGPART2" EntityType="Self.ADM_L_BILLINGPART2" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ADM_L_BILLINGPART2].[ID] AS [ID], 
+    [ADM_L_BILLINGPART2].[InvoiceNo] AS [InvoiceNo], 
+    [ADM_L_BILLINGPART2].[ProductionDescription_VC] AS [ProductionDescription_VC], 
+    [ADM_L_BILLINGPART2].[HSNCODE_VC] AS [HSNCODE_VC], 
+    [ADM_L_BILLINGPART2].[UOM_VC] AS [UOM_VC], 
+    [ADM_L_BILLINGPART2].[QTY] AS [QTY], 
+    [ADM_L_BILLINGPART2].[Rate] AS [Rate], 
+    [ADM_L_BILLINGPART2].[Amount] AS [Amount], 
+    [ADM_L_BILLINGPART2].[Discount] AS [Discount], 
+    [ADM_L_BILLINGPART2].[ValueofSupply] AS [ValueofSupply], 
+    [ADM_L_BILLINGPART2].[Sno] AS [Sno]
+    FROM [dbo].[ADM_L_BILLINGPART2] AS [ADM_L_BILLINGPART2]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ADM_M_BILLINGPRODUCTS" EntityType="Self.ADM_M_BILLINGPRODUCTS" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ADM_M_BILLINGPRODUCTS].[Sno] AS [Sno], 
+    [ADM_M_BILLINGPRODUCTS].[ProductDescription] AS [ProductDescription], 
+    [ADM_M_BILLINGPRODUCTS].[UOM_Id] AS [UOM_Id], 
+    [ADM_M_BILLINGPRODUCTS].[UOM_Name] AS [UOM_Name]
+    FROM [dbo].[ADM_M_BILLINGPRODUCTS] AS [ADM_M_BILLINGPRODUCTS]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ADM_M_UOM" EntityType="Self.ADM_M_UOM" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ADM_M_UOM].[UOM_ID] AS [UOM_ID], 
+    [ADM_M_UOM].[UOMName_VC] AS [UOMName_VC], 
+    [ADM_M_UOM].[UOMDesc_VC] AS [UOMDesc_VC], 
+    [ADM_M_UOM].[SINGLEQTY] AS [SINGLEQTY]
+    FROM [dbo].[ADM_M_UOM] AS [ADM_M_UOM]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ADM_M_USER" EntityType="Self.ADM_M_USER" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ADM_M_USER].[UserID] AS [UserID], 
+    [ADM_M_USER].[UserName] AS [UserName], 
+    [ADM_M_USER].[Password] AS [Password], 
+    [ADM_M_USER].[IsActive] AS [IsActive]
+    FROM [dbo].[ADM_M_USER] AS [ADM_M_USER]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AdityamineralsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ADM_L_BILLINGPART1">
+          <Key>
+            <PropertyRef Name="InvoiceNo" />
+          </Key>
+          <Property Name="InvoiceNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="State_VC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StateCode" Type="Int32" />
+          <Property Name="DateOfIssue" Type="DateTime" Precision="3" />
+          <Property Name="BP_Name_VC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BP_Address_VC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BP_Gstin_VC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BP_State_VC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BP_StateCode_VC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SP_Name_VC1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SP_Address_VC1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SP_Gstin_VC1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SP_State_VC1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SP_StateCode_VC1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ADM_L_BILLINGPART2">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InvoiceNo" Type="Int32" />
+          <Property Name="ProductionDescription_VC" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="HSNCODE_VC" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="UOM_VC" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="QTY" Type="Int32" />
+          <Property Name="Rate" Type="Int32" />
+          <Property Name="Amount" Type="Int32" />
+          <Property Name="Discount" Type="Int32" />
+          <Property Name="ValueofSupply" Type="Int32" />
+          <Property Name="Sno" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ADM_M_BILLINGPRODUCTS">
+          <Key>
+            <PropertyRef Name="Sno" />
+          </Key>
+          <Property Name="Sno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UOM_Id" Type="Int32" />
+          <Property Name="UOM_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ADM_M_UOM">
+          <Key>
+            <PropertyRef Name="UOM_ID" />
+          </Key>
+          <Property Name="UOM_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UOMName_VC" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UOMDesc_VC" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SINGLEQTY" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ADM_M_USER">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
+        <EntityContainer Name="AdityamineralsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ADM_L_BILLINGPART1" EntityType="Self.ADM_L_BILLINGPART1" />
+          <EntitySet Name="ADM_L_BILLINGPART2" EntityType="Self.ADM_L_BILLINGPART2" />
+          <EntitySet Name="ADM_M_BILLINGPRODUCTS" EntityType="Self.ADM_M_BILLINGPRODUCTS" />
+          <EntitySet Name="ADM_M_UOM" EntityType="Self.ADM_M_UOM" />
+          <EntitySet Name="ADM_M_USER" EntityType="Self.ADM_M_USER" />
+          <FunctionImport Name="ADM_ADDEDITBILLINGPRODUCTS" ReturnType="Collection(AdityamineralsModel.ADM_ADDEDITBILLINGPRODUCTS_Result)">
+            <Parameter Name="SNO" Mode="In" Type="Int32" />
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="uomID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ADM_ADDEDITUOM" ReturnType="Collection(AdityamineralsModel.ADM_ADDEDITUOM_Result)">
+            <Parameter Name="uomid" Mode="In" Type="Int32" />
+            <Parameter Name="uomname" Mode="In" Type="String" />
+            <Parameter Name="uomdesc" Mode="In" Type="String" />
+            <Parameter Name="singleqty" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ADM_DELINVOICE" ReturnType="Collection(AdityamineralsModel.ADM_DELINVOICE_Result)">
+            <Parameter Name="invoiceid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ADM_DELSUBINVOICE" ReturnType="Collection(AdityamineralsModel.ADM_DELSUBINVOICE_Result)">
+            <Parameter Name="invoiceid" Mode="In" Type="Int32" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ADM_SAVEBP1" ReturnType="Collection(AdityamineralsModel.ADM_SAVEBP1_Result)">
+            <Parameter Name="state" Mode="In" Type="String" />
+            <Parameter Name="statecode" Mode="In" Type="Int32" />
+            <Parameter Name="date" Mode="In" Type="DateTime" />
+            <Parameter Name="bpname" Mode="In" Type="String" />
+            <Parameter Name="bpaddress" Mode="In" Type="String" />
+            <Parameter Name="bpgstin" Mode="In" Type="String" />
+            <Parameter Name="bpstate" Mode="In" Type="String" />
+            <Parameter Name="bpstatecode" Mode="In" Type="Int32" />
+            <Parameter Name="spname" Mode="In" Type="String" />
+            <Parameter Name="spaddress" Mode="In" Type="String" />
+            <Parameter Name="spgstin" Mode="In" Type="String" />
+            <Parameter Name="spstate" Mode="In" Type="String" />
+            <Parameter Name="spstatecode" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ADM_SAVEBP1EDIT" ReturnType="Collection(AdityamineralsModel.ADM_SAVEBP1EDIT_Result)">
+            <Parameter Name="state" Mode="In" Type="String" />
+            <Parameter Name="statecode" Mode="In" Type="Int32" />
+            <Parameter Name="date" Mode="In" Type="DateTime" />
+            <Parameter Name="bpname" Mode="In" Type="String" />
+            <Parameter Name="bpaddress" Mode="In" Type="String" />
+            <Parameter Name="bpgstin" Mode="In" Type="String" />
+            <Parameter Name="bpstate" Mode="In" Type="String" />
+            <Parameter Name="bpstatecode" Mode="In" Type="Int32" />
+            <Parameter Name="spname" Mode="In" Type="String" />
+            <Parameter Name="spaddress" Mode="In" Type="String" />
+            <Parameter Name="spgstin" Mode="In" Type="String" />
+            <Parameter Name="spstate" Mode="In" Type="String" />
+            <Parameter Name="spstatecode" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ADM_SAVEBP2" ReturnType="Collection(AdityamineralsModel.ADM_SAVEBP2_Result)">
+            <Parameter Name="InvoiceNo" Mode="In" Type="Int32" />
+            <Parameter Name="proddesc" Mode="In" Type="String" />
+            <Parameter Name="hsncode" Mode="In" Type="String" />
+            <Parameter Name="uom" Mode="In" Type="String" />
+            <Parameter Name="qty" Mode="In" Type="Int32" />
+            <Parameter Name="rate" Mode="In" Type="Int32" />
+            <Parameter Name="amount" Mode="In" Type="Int32" />
+            <Parameter Name="discount" Mode="In" Type="Int32" />
+            <Parameter Name="valueofsupply" Mode="In" Type="Int32" />
+            <Parameter Name="prodid" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="ADM_ADDEDITBILLINGPRODUCTS_Result">
+          <Property Type="String" Name="Message" Nullable="true" />
+          <Property Type="Int32" Name="StatusCode" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ADM_ADDEDITUOM_Result">
+          <Property Type="String" Name="Message" Nullable="true" />
+          <Property Type="Int32" Name="StatusCode" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ADM_DELINVOICE_Result">
+          <Property Type="String" Name="Message" Nullable="true" />
+          <Property Type="Int32" Name="StatusCode" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ADM_DELSUBINVOICE_Result">
+          <Property Type="String" Name="Message" Nullable="true" />
+          <Property Type="Int32" Name="StatusCode" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ADM_SAVEBP1_Result">
+          <Property Type="String" Name="Message" Nullable="true" />
+          <Property Type="Int32" Name="StatusCode" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ADM_SAVEBP1EDIT_Result">
+          <Property Type="String" Name="Message" Nullable="true" />
+          <Property Type="Int32" Name="StatusCode" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ADM_SAVEBP2_Result">
+          <Property Type="String" Name="Message" Nullable="true" />
+          <Property Type="Int32" Name="StatusCode" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AdityamineralsModelStoreContainer" CdmEntityContainer="AdityamineralsEntities">
+          <EntitySetMapping Name="ADM_L_BILLINGPART1">
+            <EntityTypeMapping TypeName="AdityamineralsModel.ADM_L_BILLINGPART1">
+              <MappingFragment StoreEntitySet="ADM_L_BILLINGPART1">
+                <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+                <ScalarProperty Name="State_VC" ColumnName="State_VC" />
+                <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+                <ScalarProperty Name="DateOfIssue" ColumnName="DateOfIssue" />
+                <ScalarProperty Name="BP_Name_VC" ColumnName="BP_Name_VC" />
+                <ScalarProperty Name="BP_Address_VC" ColumnName="BP_Address_VC" />
+                <ScalarProperty Name="BP_Gstin_VC" ColumnName="BP_Gstin_VC" />
+                <ScalarProperty Name="BP_State_VC" ColumnName="BP_State_VC" />
+                <ScalarProperty Name="BP_StateCode_VC" ColumnName="BP_StateCode_VC" />
+                <ScalarProperty Name="SP_Name_VC1" ColumnName="SP_Name_VC1" />
+                <ScalarProperty Name="SP_Address_VC1" ColumnName="SP_Address_VC1" />
+                <ScalarProperty Name="SP_Gstin_VC1" ColumnName="SP_Gstin_VC1" />
+                <ScalarProperty Name="SP_State_VC1" ColumnName="SP_State_VC1" />
+                <ScalarProperty Name="SP_StateCode_VC1" ColumnName="SP_StateCode_VC1" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ADM_L_BILLINGPART2">
+            <EntityTypeMapping TypeName="AdityamineralsModel.ADM_L_BILLINGPART2">
+              <MappingFragment StoreEntitySet="ADM_L_BILLINGPART2">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+                <ScalarProperty Name="ProductionDescription_VC" ColumnName="ProductionDescription_VC" />
+                <ScalarProperty Name="HSNCODE_VC" ColumnName="HSNCODE_VC" />
+                <ScalarProperty Name="UOM_VC" ColumnName="UOM_VC" />
+                <ScalarProperty Name="QTY" ColumnName="QTY" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="ValueofSupply" ColumnName="ValueofSupply" />
+                <ScalarProperty Name="Sno" ColumnName="Sno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ADM_M_BILLINGPRODUCTS">
+            <EntityTypeMapping TypeName="AdityamineralsModel.ADM_M_BILLINGPRODUCTS">
+              <MappingFragment StoreEntitySet="ADM_M_BILLINGPRODUCTS">
+                <ScalarProperty Name="Sno" ColumnName="Sno" />
+                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+                <ScalarProperty Name="UOM_Id" ColumnName="UOM_Id" />
+                <ScalarProperty Name="UOM_Name" ColumnName="UOM_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ADM_M_UOM">
+            <EntityTypeMapping TypeName="AdityamineralsModel.ADM_M_UOM">
+              <MappingFragment StoreEntitySet="ADM_M_UOM">
+                <ScalarProperty Name="UOM_ID" ColumnName="UOM_ID" />
+                <ScalarProperty Name="UOMName_VC" ColumnName="UOMName_VC" />
+                <ScalarProperty Name="UOMDesc_VC" ColumnName="UOMDesc_VC" />
+                <ScalarProperty Name="SINGLEQTY" ColumnName="SINGLEQTY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ADM_M_USER">
+            <EntityTypeMapping TypeName="AdityamineralsModel.ADM_M_USER">
+              <MappingFragment StoreEntitySet="ADM_M_USER">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ADM_ADDEDITBILLINGPRODUCTS" FunctionName="AdityamineralsModel.Store.ADM_ADDEDITBILLINGPRODUCTS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AdityamineralsModel.ADM_ADDEDITBILLINGPRODUCTS_Result">
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ADM_ADDEDITUOM" FunctionName="AdityamineralsModel.Store.ADM_ADDEDITUOM">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AdityamineralsModel.ADM_ADDEDITUOM_Result">
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ADM_DELINVOICE" FunctionName="AdityamineralsModel.Store.ADM_DELINVOICE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AdityamineralsModel.ADM_DELINVOICE_Result">
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ADM_DELSUBINVOICE" FunctionName="AdityamineralsModel.Store.ADM_DELSUBINVOICE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AdityamineralsModel.ADM_DELSUBINVOICE_Result">
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ADM_SAVEBP1" FunctionName="AdityamineralsModel.Store.ADM_SAVEBP1">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AdityamineralsModel.ADM_SAVEBP1_Result">
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ADM_SAVEBP1EDIT" FunctionName="AdityamineralsModel.Store.ADM_SAVEBP1EDIT">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AdityamineralsModel.ADM_SAVEBP1EDIT_Result">
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ADM_SAVEBP2" FunctionName="AdityamineralsModel.Store.ADM_SAVEBP2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AdityamineralsModel.ADM_SAVEBP2_Result">
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

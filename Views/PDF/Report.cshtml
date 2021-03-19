@@ -1,0 +1,414 @@
+﻿@using AdityaMinerals.Models
+@model reportmodel
+
+@{
+    ViewBag.Title = "Report";
+    Layout = null;
+    int counter = 1;
+}
+
+ 
+<html>
+<head>
+    <meta charset="utf-8">
+    
+
+    <style>
+
+        #invoicetable1 {
+            text-align: center;
+            vertical-align: middle;
+            border-collapse: collapse;
+        }
+      
+        .invoice-box {
+            max-width: 800px;
+            margin: auto;
+            padding: 30px;
+            border: 1px solid #eee;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+            font-size: 16px;
+            line-height: 24px;
+            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            color: #555;
+        }
+
+        .invoice-box-a {
+            max-width: 800px;
+            margin: auto;
+            padding: 10px;
+            border-top: 1px solid black;
+            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            color: black;
+        }
+
+        .invoice-box table {
+            width: 100%;
+            line-height: inherit;
+            text-align: left;
+        }
+
+            .invoice-box table td {
+                padding: 5px;
+                vertical-align: top;
+            }
+
+            .invoice-box table tr td:nth-child(2) {
+                text-align: right;
+            }
+
+            .invoice-box table tr.top table td {
+                padding-bottom: 20px;
+            }
+
+                .invoice-box table tr.top table td.title {
+                    font-size: 45px;
+                    line-height: 45px;
+                    color: #333;
+                }
+
+            .invoice-box table tr.information table td {
+                padding-bottom: 40px;
+            }
+
+            .invoice-box table tr.heading td {
+                background: #eee;
+                border-bottom: 1px solid #ddd;
+                font-weight: bold;
+            }
+
+            .invoice-box table tr.details td {
+                padding-bottom: 20px;
+            }
+
+            .invoice-box table tr.item td {
+                border-bottom: 1px solid #eee;
+            }
+
+            .invoice-box table tr.item.last td {
+                border-bottom: none;
+            }
+
+            .invoice-box table tr.total td:nth-child(2) {
+                border-top: 2px solid #eee;
+                font-weight: bold;
+            }
+
+
+            .invoice-box table tr.information table td {
+                width: 100%;
+                display: block;
+                text-align: center;
+            }
+
+
+        /** RTL **/
+        .rtl {
+            direction: rtl;
+            font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+        }
+
+            .rtl table {
+                text-align: right;
+            }
+
+                .rtl table tr td:nth-child(2) {
+                    text-align: left;
+                }
+    </style>
+</head>
+
+<body>
+    <div class="invoice-box" style="border-color: black;border-radius:10px">
+        <table cellpadding="0" cellspacing="0">
+            <tr class="top">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td class="title text-center" style="padding-left:25%;font-family:inherit">
+                                <B>  ADITYA MINERALS</B>
+                            </td>
+
+
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr class="information">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                                Sy.No.132/1,2,Near Vadada Junction,Arasavilli Road,Khazipeta Panchayat,
+                                <br>
+                                <b>SRIKAKULAM - 532001. Cell:9246633763,</b>
+                                <br>
+                                <B>GSTIN:37ABAFA6174A2ZT</B>
+                            </td>
+
+                        </tr>
+
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <div style="border-color: black;text-align: center" class="invoice-box-a">
+            <b>BILL OF SUPPLY:</b>
+            <hr>
+            <table>
+                <tr>
+                    <th>
+                        <b>Invoice No.: </b>
+
+                        @Model.bp1.InvoiceNo
+                    </th>
+                    <th>
+
+                        <b>State: </b>
+                        @Model.bp1.State_VC
+                    </th>
+
+
+                </tr>
+                <tr>
+                    <th>
+                        <b> Date of Issue: </b>
+
+                        @Model.bp1.DateOfIssue
+                    </th>
+                    <th>
+                        <b> State Code: </b>
+
+                        @Model.bp1.StateCode
+                    </th>
+                </tr>
+            </table>
+        </div>
+        <br />
+        <div class="invoice-box-a">
+            <table style="width:100%">
+                <tr>
+                    <th colspan="2" style="text-align: center">
+                        BILL TO PARTY:
+                        <hr>
+                    </th>
+                    <th colspan="2" style="text-align: center">
+                        SHIP TO PARTY:
+                        <hr>
+                    </th>
+
+                </tr>
+
+                <tr>
+                    <th colspan="2">
+                        Name: @Model.bp1.BP_Name_VC
+                    </th>
+                    <th colspan="2">
+                        Name: @Model.bp1.SP_Name_VC1
+                    </th>
+
+                </tr>
+                <tr>
+                    <th colspan="2">
+                        Address: @Model.bp1.BP_Address_VC
+                    </th>
+                    <th colspan="2">
+                        Address: @Model.bp1.SP_Address_VC1
+                    </th>
+
+                </tr>
+                <tr>
+                    <th colspan="2">
+                        GSTIN/UIN: @Model.bp1.BP_Gstin_VC
+                    </th>
+                    <th colspan="2">
+                        GSTIN/UIN: @Model.bp1.SP_Gstin_VC1
+                    </th>
+
+                </tr>
+                <tr>
+                    <th colspan="1">
+                        State: @Model.bp1.BP_State_VC
+                    </th>
+                    <th colspan="1">
+                        State Code: @Model.bp1.BP_StateCode_VC
+                    </th>
+                    <th colspan="1">
+                        State: @Model.bp1.SP_State_VC1
+                    </th>
+                    <th colspan="1">
+                        State Code: @Model.bp1.SP_StateCode_VC1
+                    </th>
+                </tr>
+
+            </table>
+
+        </div>
+        <br />
+        <div class="invoice-box-a">
+            <table id="invoicetable1" class="table table-responsive table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">
+                            S.NO
+                            <hr />
+                        </th>
+
+                        <th scope="col">
+                            PRODUCT <hr />
+                        </th>
+                        <th scope="col">
+                            HSN CODE <hr />
+                        </th>
+                        <th scope="col">
+                            UOM <hr />
+                        </th>
+                        <th scope="col">
+                            QTY <hr />
+                        </th>
+                        <th scope="col">
+                            RATE <hr />
+                        </th>
+                        <th scope="col">
+                            AMOUNT <hr />
+                        </th>
+                        <th scope="col">
+                            DISCOUNT <hr />
+                        </th>
+                        <th scope="col">
+                            VALUE OF SUPPLY <hr />
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.bp2)
+                    {
+                        <tr class="table-active">
+
+                            <td scope="row">
+                                @counter
+                                @{
+                                    counter++;
+                                }
+                            </td>
+                            <td scope="row">
+                                @item.ProductionDescription_VC
+                            </td>
+                            <td scope="row">
+                                @item.HSNCODE_VC
+                            </td>
+                            <td scope="row">
+                                @item.UOM_VC
+                            </td>
+                            <td scope="row">
+                                @item.QTY
+                            </td>
+                            <td scope="row">
+                                @item.Rate
+                            </td>
+                            <td scope="row">
+                                @item.Amount
+                            </td>
+                            <td scope="row">
+                                @item.Discount
+                            </td>
+                            <td scope="row">
+                                @item.ValueofSupply
+                            </td>
+
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <br />
+        <div class="invoice-box-a">
+           
+            <b>Total Invoice Amount Rs.</b>
+        </div>
+        <br />
+        <div class="invoice-box-a">
+            <table style="width:100%;">
+                <tr>
+                    <th style="text-align: center">
+                        BANK DETAILS:
+                        <hr />
+                    </th>
+                    <th style="text-align: center">
+                        TERMS AND CONDITIONS:
+                        <hr />
+                    </th>
+
+
+                </tr>
+
+                <tr>
+                    <th>
+                        Bank: ANDHRA BANK(KILLIPALEM)
+                    </th>
+                    <th>
+
+                    </th>
+
+
+                </tr>
+                <tr>
+                    <th>
+                        Bank A/C: 174811100002519
+                    </th>
+                    <th>
+
+                    </th>
+
+                </tr>
+                <tr>
+                    <th>
+                        Bank IFSC: ANDB0001748
+                    </th>
+                    <th>
+
+                    </th>
+
+                </tr>
+
+
+            </table>
+        </div>
+
+        <br />
+        <div class="invoice-box-a">
+            <table style="width:100%;">
+                <tr>
+                    <th>
+                        
+                        <br />
+                        Certified that/the particular given<br /> above are true and correct <br />
+                        For <b>ADITYA MINERALS</b>
+                      
+                    </th>
+                    <th style="vertical-align:bottom;text-align:center; border: 1PX solid">
+
+                        Authorised Signatory
+                    </th>
+
+
+                </tr>
+            </table>
+        </div>
+     
+        <div class="invoice-box-a">
+            Note:Composit Dealer not Eligible to claim input tax
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    $('#invoicetable1').DataTable({
+     
+    
+
+    });
+</script>

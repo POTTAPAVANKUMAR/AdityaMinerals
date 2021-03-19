@@ -43,9 +43,9 @@ namespace AdityaMinerals.Controllers
         }
         public dynamic logout()
         {
-           
-            return RedirectToAction("GOOGLE.COM");
-           
+
+            return RedirectToAction("MainDashboard", "Dashboard");
+
         }
     }
 }

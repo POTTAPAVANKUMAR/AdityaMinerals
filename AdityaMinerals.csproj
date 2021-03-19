@@ -52,6 +52,9 @@
       <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Select.HtmlToPdf, Version=21.1.0.0, Culture=neutral, PublicKeyToken=e0ae9f6e27a97018, processorArchitecture=MSIL">
+      <HintPath>packages\Select.HtmlToPdf.21.1.0-rc1\lib\net40\Select.HtmlToPdf.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -132,37 +135,60 @@
     <Compile Include="BussinessLayer\LoginBL.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PDFController.cs" />
     <Compile Include="DataAccessLayer\DashbordDL.cs" />
     <Compile Include="DataAccessLayer\LoginDL.cs" />
+    <Compile Include="DataAccessLayer\PDFDLController.cs" />
+    <Compile Include="EntityModels\AdityamineralsEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AdityamineralsEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModels\AdityamineralsEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AdityamineralsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModels\AdityamineralsEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AdityamineralsEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModels\ADM_ADDEDITBILLINGPRODUCTS_Result.cs">
+      <DependentUpon>AdityamineralsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModels\ADM_ADDEDITUOM_Result.cs">
+      <DependentUpon>AdityamineralsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModels\ADM_DELINVOICE_Result.cs">
+      <DependentUpon>AdityamineralsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModels\ADM_DELSUBINVOICE_Result.cs">
+      <DependentUpon>AdityamineralsEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="EntityModels\ADM_L_BILLINGPART1.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>AdityamineralsEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModels\ADM_L_BILLINGPART2.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>AdityamineralsEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModels\ADM_M_BILLINGPRODUCTS.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>AdityamineralsEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModels\ADM_M_UOM.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>AdityamineralsEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModels\ADM_M_USER.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>AdityamineralsEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="EntityModels\Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
+    <Compile Include="EntityModels\ADM_SAVEBP1EDIT_Result.cs">
+      <DependentUpon>AdityamineralsEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="EntityModels\Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="EntityModels\ADM_SAVEBP1_Result.cs">
+      <DependentUpon>AdityamineralsEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="EntityModels\Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
+    <Compile Include="EntityModels\ADM_SAVEBP2_Result.cs">
+      <DependentUpon>AdityamineralsEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -170,6 +196,7 @@
     <Compile Include="Models\billingprodedit.cs" />
     <Compile Include="Models\CommonOutput.cs" />
     <Compile Include="Models\login.cs" />
+    <Compile Include="Models\report.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -182,15 +209,15 @@
     <Content Include="Content\images.png" />
     <Content Include="Content\michael-benz-IgWNxx7paz4-unsplash.jpg" />
     <Content Include="Content\ocean.jpg" />
-    <Content Include="EntityModels\Model1.Context.tt">
+    <Content Include="EntityModels\AdityamineralsEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+      <DependentUpon>AdityamineralsEntities.edmx</DependentUpon>
+      <LastGenOutput>AdityamineralsEntities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="EntityModels\Model1.tt">
+    <Content Include="EntityModels\AdityamineralsEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
+      <DependentUpon>AdityamineralsEntities.edmx</DependentUpon>
+      <LastGenOutput>AdityamineralsEntities.cs</LastGenOutput>
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -198,15 +225,15 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="EntityModels\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="EntityModels\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <Content Include="Content\_bootswatch.scss" />
     <Content Include="Content\_variables.scss" />
+    <EntityDeploy Include="EntityModels\AdityamineralsEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>AdityamineralsEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="EntityModels\AdityamineralsEntities.edmx.diagram">
+      <DependentUpon>AdityamineralsEntities.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\index.html" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -250,9 +277,13 @@
     <Content Include="Views\Dashboard\editbillgenerator.cshtml" />
     <Content Include="Views\Dashboard\_productsedit.cshtml" />
     <Content Include="Views\Dashboard\_editbillprodA.cshtml" />
+    <Content Include="Views\PDF\Report.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\PDFBL\" />
+    <Folder Include="Views\PDFDL\" />
+    <Folder Include="Views\report\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

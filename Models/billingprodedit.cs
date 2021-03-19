@@ -38,6 +38,7 @@ namespace AdityaMinerals.Models
     {
         public string state { get; set; }
         public int statecode { get; set; }
+        public string DATE1 { get; set; }
         public DateTime date { get; set; }
         public string bpname { get; set; }
         public string bpaddress { get; set; }
@@ -60,5 +61,15 @@ namespace AdityaMinerals.Models
         public ADM_L_BILLINGPART1 BP1 { get; set; }
         public List<ADM_L_BILLINGPART2> BP2 { get; set; }
         public List<ADM_M_BILLINGPRODUCTS> BP3 { get; set; }
+    }
+    public class graph1
+    {
+        public int QTY { get; set; }
+        public string PD { get; set; }
+    }
+    public class op
+    {
+        public List<graph1> output { get; set; }
+        public string output1 { get; set; }
     }
 }
