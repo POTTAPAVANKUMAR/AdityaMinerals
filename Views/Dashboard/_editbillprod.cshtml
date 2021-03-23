@@ -123,7 +123,7 @@
                         </div>
                         <div class="col-lg-8">
 
-                            <input type="text" name="txtGangDesc" id="amount" value="@Model.bp2.Amount" class="form-control" placeholder="" />
+                            <input type="text" name="txtGangDesc" id="amount" value="@Model.bp2.Amount" class="form-control" placeholder="" readonly/>
                         </div>
 
                     </div>
@@ -143,7 +143,7 @@
                         </div>
                         <div class="col-lg-8">
 
-                            <input type="text" name="txtGangDesc" id="vos" value="@Model.bp2.ValueofSupply" class="form-control" placeholder="" />
+                            <input type="text" name="txtGangDesc" id="vos" value="@Model.bp2.ValueofSupply" class="form-control" placeholder="" readonly/>
                         </div>
 
                     </div>
@@ -162,6 +162,29 @@
     </div>
 </div>
 <script>
+
+
+
+  
+    $("#amount").click(function () {
+        debugger;
+
+        var a = $("#qty").val();
+        var b = $("#rate").val();
+        $("#amount").val(parseInt(a) * parseInt(b));
+    });
+    $("#vos").click(function () {
+        debugger;
+
+        var a = $("#amount").val();
+        var b = $("#discount").val();
+        $("#vos").val(parseInt(a) * parseInt(b)*0.01);
+    });
+
+
+
+
+
     function SaveGang() {
         savebp2model = {};
         savebp2model.invoiceno = $('#invoiceno_id').val();

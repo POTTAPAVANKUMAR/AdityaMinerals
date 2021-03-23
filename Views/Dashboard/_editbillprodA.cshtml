@@ -124,7 +124,7 @@
                         </div>
                         <div class="col-lg-8">
 
-                            <input type="text" name="txtGangDesc" id="amount" value="" class="form-control" placeholder="" />
+                            <input type="text" name="txtGangDesc" id="amount" value="" class="form-control" placeholder="" readonly/>
                         </div>
 
                     </div>
@@ -144,7 +144,7 @@
                         </div>
                         <div class="col-lg-8">
 
-                            <input type="text" name="txtGangDesc" id="vos" value="" class="form-control" placeholder="" />
+                            <input type="text" name="txtGangDesc" id="vos" value="" class="form-control" placeholder="" readonly/>
                         </div>
 
                     </div>
@@ -163,7 +163,24 @@
     </div>
 </div>
 <script>
+
+    $("#amount").click(function () {
+        debugger;
+
+        var a = $("#qty").val();
+        var b = $("#rate").val();
+        $("#amount").val(parseInt(a) * parseInt(b));
+    });
+    $("#vos").click(function () {
+        debugger;
+
+        var a = $("#amount").val();
+        var b = $("#discount").val();
+        $("#vos").val(parseInt(a) * parseInt(b) * 0.01);
+    });
     function SaveGang() {
+        var a = $("#qty").val();
+        var b = $("#rate").val();
         savebp2model = {};
         savebp2model.invoiceno = $('#invoiceno_id').val();
         savebp2model.prodid = $('#prodid_id').val();
@@ -171,9 +188,9 @@
         savebp2model.uom = $('#uom').val();
         savebp2model.qty = $('#qty').val();
         savebp2model.rate = $('#rate').val();
-        savebp2model.amount = $('#amount').val();
+        savebp2model.amount = parseInt(a) * parseInt(b);
         savebp2model.discount = $('#discount').val();
-        savebp2model.valueofsupply = $('#vos').val();
+        savebp2model.valueofsupply = parseInt(a) * parseInt(b) * 0.01;
         $.ajax({
                 type: "POST",
                 url: "@Url.Action("savebp2", "Dashboard")",

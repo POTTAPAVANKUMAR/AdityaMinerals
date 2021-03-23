@@ -5,6 +5,7 @@
     ViewBag.Title = "Report";
     Layout = null;
     int counter = 1;
+    double total = 0;
 }
 
  
@@ -316,18 +317,21 @@
                             </td>
                             <td scope="row">
                                 @item.ValueofSupply
+                                @{ 
+                                    total = total + Convert.ToDouble(@item.ValueofSupply);
+                                }
                             </td>
 
 
                         </tr>
-                    }
+                                    }
                 </tbody>
             </table>
         </div>
         <br />
         <div class="invoice-box-a">
            
-            <b>Total Invoice Amount Rs.</b>
+            <b>Total Invoice Amount Rs.:   @total</b>   
         </div>
         <br />
         <div class="invoice-box-a">

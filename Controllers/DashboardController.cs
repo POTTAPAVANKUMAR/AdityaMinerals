@@ -4,6 +4,7 @@ using AdityaMinerals.EntityModels;
 using AdityaMinerals.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net.Mime;
 using System.Web;
@@ -323,6 +324,32 @@ namespace AdityaMinerals.Controllers
             }
         }
        
-
+        public dynamic deleteprod(billingprodedit bp)
+        {
+            if (Session["UserName"] != null)
+            {
+                CommonOutput co = new CommonOutput();
+                using (AdityamineralsEntities objDB = new AdityamineralsEntities())
+                {
+                    var count = objDB.ADM_L_BILLINGPART2.Where(c => c.Sno == bp.sno).Count();
+                    if(count>0)
+                    {
+                        co.Message = "Cannot delete this product-Its already mapped with different billing invoice";
+                        co.StatusCode = 200;
+                    }
+                    else
+                    {
+                        SqlParameter invoice = new SqlParameter("@sno", Convert.ToInt32(bp.sno));
+                        co = objDB.Database.SqlQuery<CommonOutput>("[dbo].[ADM_DELPROD] @sno", invoice).FirstOrDefault();
+                       
+                    }
+                }
+                return Json(co, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
+        }
     }
 }

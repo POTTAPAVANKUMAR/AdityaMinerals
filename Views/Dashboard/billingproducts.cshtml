@@ -30,6 +30,9 @@
                             <th scope="col">
                                 UOM NAME
                             </th>
+                            <th scope="col">
+
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -48,7 +51,9 @@
                                 <td scope="row">
                                     @item.UOM_Name
                                 </td>
-
+                                <td>
+                                    <a href="#" onclick="deleteprod(@item.Sno)"><i class="fa fa-trash"></i></a>
+                                </td>
                             </tr>
                         }
                     </tbody>
@@ -92,7 +97,7 @@
 <script>
     proddatatable();
     getuomlist();
-  
+
     function getuomlist() {
          $.ajax({
                 type: "POST",
@@ -123,6 +128,28 @@
 
         });
     }
+    function deleteprod(value) {
+        billingprodedit = {};
+        billingprodedit.sno = value;
+        $.ajax({
+                type: "POST",
+                url: "@Url.Action("deleteprod", "Dashboard")",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                cache: false,
+                async: false,
+                data: JSON.stringify(billingprodedit),
+                success: function (data) {
+
+                    res = data.Message;
+                    code = data.StatusCode;
+                    alert(res);
+                 
+                }
+        });
+
+    }
+    
     function addeditproducts(variable) {
         billingprodedit = {};
         billingprodedit.sno = $("#sno").val();
@@ -144,5 +171,5 @@
                 }
          });
     }
-   
+
 </script>
