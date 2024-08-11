@@ -150,8 +150,12 @@ namespace AdityaMinerals.EntityModels
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ADM_SAVEBP1_Result>("ADM_SAVEBP1", stateParameter, statecodeParameter, dateParameter, bpnameParameter, bpaddressParameter, bpgstinParameter, bpstateParameter, bpstatecodeParameter, spnameParameter, spaddressParameter, spgstinParameter, spstateParameter, spstatecodeParameter);
         }
     
-        public virtual ObjectResult<ADM_SAVEBP1EDIT_Result> ADM_SAVEBP1EDIT(string state, Nullable<int> statecode, Nullable<System.DateTime> date, string bpname, string bpaddress, string bpgstin, string bpstate, Nullable<int> bpstatecode, string spname, string spaddress, string spgstin, string spstate, Nullable<int> spstatecode)
+        public virtual ObjectResult<ADM_SAVEBP1EDIT_Result> ADM_SAVEBP1EDIT(Nullable<int> invoiceNo, string state, Nullable<int> statecode, Nullable<System.DateTime> date, string bpname, string bpaddress, string bpgstin, string bpstate, Nullable<int> bpstatecode, string spname, string spaddress, string spgstin, string spstate, Nullable<int> spstatecode)
         {
+            var invoiceNoParameter = invoiceNo.HasValue ?
+                new ObjectParameter("invoiceNo", invoiceNo) :
+                new ObjectParameter("invoiceNo", typeof(int));
+    
             var stateParameter = state != null ?
                 new ObjectParameter("state", state) :
                 new ObjectParameter("state", typeof(string));
@@ -204,7 +208,7 @@ namespace AdityaMinerals.EntityModels
                 new ObjectParameter("spstatecode", spstatecode) :
                 new ObjectParameter("spstatecode", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ADM_SAVEBP1EDIT_Result>("ADM_SAVEBP1EDIT", stateParameter, statecodeParameter, dateParameter, bpnameParameter, bpaddressParameter, bpgstinParameter, bpstateParameter, bpstatecodeParameter, spnameParameter, spaddressParameter, spgstinParameter, spstateParameter, spstatecodeParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ADM_SAVEBP1EDIT_Result>("ADM_SAVEBP1EDIT", invoiceNoParameter, stateParameter, statecodeParameter, dateParameter, bpnameParameter, bpaddressParameter, bpgstinParameter, bpstateParameter, bpstatecodeParameter, spnameParameter, spaddressParameter, spgstinParameter, spstateParameter, spstatecodeParameter);
         }
     
         public virtual ObjectResult<ADM_SAVEBP2_Result> ADM_SAVEBP2(Nullable<int> invoiceNo, string proddesc, string hsncode, string uom, Nullable<int> qty, Nullable<int> rate, Nullable<int> amount, Nullable<int> discount, Nullable<int> valueofsupply, Nullable<int> prodid)

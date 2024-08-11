@@ -25,5 +25,7 @@ namespace AdityaMinerals.EntityModels
         public Nullable<int> Discount { get; set; }
         public Nullable<int> ValueofSupply { get; set; }
         public Nullable<int> Sno { get; set; }
+    
+        public virtual ADM_L_BILLINGPART1 ADM_L_BILLINGPART1 { get; set; }
     }
 }

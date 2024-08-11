@@ -10,6 +10,7 @@
         <EntityTypeShape EntityType="AdityamineralsModel.ADM_M_BILLINGPRODUCTS" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="AdityamineralsModel.ADM_M_UOM" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="AdityamineralsModel.ADM_M_USER" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="AdityamineralsModel.FK__ADM_L_BIL__Invoi__2C3393D0" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
