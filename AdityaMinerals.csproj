@@ -209,6 +209,8 @@
     <Content Include="Content\images.png" />
     <Content Include="Content\michael-benz-IgWNxx7paz4-unsplash.jpg" />
     <Content Include="Content\ocean.jpg" />
+    <Content Include="DbDeploy\Archive\11082024.sql" />
+    <Content Include="DbDeploy\Deploy\1182024-vp.sql" />
     <Content Include="EntityModels\AdityamineralsEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>AdityamineralsEntities.edmx</DependentUpon>
