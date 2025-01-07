@@ -90,8 +90,18 @@
           <Parameter Name="uomdesc" Type="varchar(max)" Mode="In" />
           <Parameter Name="singleqty" Type="int" Mode="In" />
         </Function>
+        <Function Name="ADM_CHART1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="ADM_DELINVOICE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="invoiceid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ADM_DELPRO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="sno" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ADM_DELPROD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="sno" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ADM_DELPRODU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SNO" Type="int" Mode="In" />
         </Function>
         <Function Name="ADM_DELSUBINVOICE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="invoiceid" Type="int" Mode="In" />
@@ -290,6 +300,16 @@
             <End Role="ADM_L_BILLINGPART1" EntitySet="ADM_L_BILLINGPART1" />
             <End Role="ADM_L_BILLINGPART2" EntitySet="ADM_L_BILLINGPART2" />
           </AssociationSet>
+          <FunctionImport Name="ADM_CHART1" ReturnType="Collection(AdityamineralsModel.ADM_CHART1_Result)" />
+          <FunctionImport Name="ADM_DELPRO">
+            <Parameter Name="sno" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ADM_DELPROD">
+            <Parameter Name="sno" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ADM_DELPRODU">
+            <Parameter Name="SNO" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="ADM_ADDEDITBILLINGPRODUCTS_Result">
           <Property Type="String" Name="Message" Nullable="true" />
@@ -331,6 +351,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="ADM_CHART1_Result">
+          <Property Type="Int32" Name="QTY" Nullable="true" />
+          <Property Type="String" Name="PD" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -460,6 +484,17 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ADM_CHART1" FunctionName="AdityamineralsModel.Store.ADM_CHART1">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AdityamineralsModel.ADM_CHART1_Result">
+                <ScalarProperty Name="QTY" ColumnName="QTY" />
+                <ScalarProperty Name="PD" ColumnName="PD" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ADM_DELPRO" FunctionName="AdityamineralsModel.Store.ADM_DELPRO" />
+          <FunctionImportMapping FunctionImportName="ADM_DELPROD" FunctionName="AdityamineralsModel.Store.ADM_DELPROD" />
+          <FunctionImportMapping FunctionImportName="ADM_DELPRODU" FunctionName="AdityamineralsModel.Store.ADM_DELPRODU" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

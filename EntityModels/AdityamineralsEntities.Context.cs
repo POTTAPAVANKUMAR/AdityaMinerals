@@ -255,5 +255,37 @@ namespace AdityaMinerals.EntityModels
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ADM_SAVEBP2_Result>("ADM_SAVEBP2", invoiceNoParameter, proddescParameter, hsncodeParameter, uomParameter, qtyParameter, rateParameter, amountParameter, discountParameter, valueofsupplyParameter, prodidParameter);
         }
+    
+        public virtual ObjectResult<ADM_CHART1_Result> ADM_CHART1()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ADM_CHART1_Result>("ADM_CHART1");
+        }
+    
+        public virtual int ADM_DELPRO(Nullable<int> sno)
+        {
+            var snoParameter = sno.HasValue ?
+                new ObjectParameter("sno", sno) :
+                new ObjectParameter("sno", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ADM_DELPRO", snoParameter);
+        }
+    
+        public virtual int ADM_DELPROD(Nullable<int> sno)
+        {
+            var snoParameter = sno.HasValue ?
+                new ObjectParameter("sno", sno) :
+                new ObjectParameter("sno", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ADM_DELPROD", snoParameter);
+        }
+    
+        public virtual int ADM_DELPRODU(Nullable<int> sNO)
+        {
+            var sNOParameter = sNO.HasValue ?
+                new ObjectParameter("SNO", sNO) :
+                new ObjectParameter("SNO", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ADM_DELPRODU", sNOParameter);
+        }
     }
 }
