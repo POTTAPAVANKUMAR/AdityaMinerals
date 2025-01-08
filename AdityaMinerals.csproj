@@ -136,6 +136,7 @@
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PDFController.cs" />
+    <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="DataAccessLayer\DashbordDL.cs" />
     <Compile Include="DataAccessLayer\LoginDL.cs" />
     <Compile Include="DataAccessLayer\PDFDLController.cs" />
@@ -158,6 +159,9 @@
       <DependentUpon>AdityamineralsEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModels\ADM_ADDEDITUOM_Result.cs">
+      <DependentUpon>AdityamineralsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModels\ADM_CHART1_Result.cs">
       <DependentUpon>AdityamineralsEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModels\ADM_DELINVOICE_Result.cs">
@@ -280,6 +284,7 @@
     <Content Include="Views\Dashboard\_productsedit.cshtml" />
     <Content Include="Views\Dashboard\_editbillprodA.cshtml" />
     <Content Include="Views\PDF\Report.cshtml" />
+    <Content Include="Views\Register\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -307,6 +312,7 @@
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
+  <PropertyGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
