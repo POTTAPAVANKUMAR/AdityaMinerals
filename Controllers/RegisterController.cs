@@ -11,9 +11,9 @@ namespace AdityaMinerals.Controllers
 	public class RegisterController : Controller
 	{
 		// GET: Register
-		public dynamic Index()
+		public dynamic Register()
 		{
-			return View(); // This will render the Register view
+			return View(); 
 		}
 
 		[HttpPost]
