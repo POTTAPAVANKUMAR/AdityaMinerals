@@ -1,0 +1,268 @@
+@{
+    ViewBag.Title = "Enhanced Reports";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>
+                    <i class="fa fa-chart-bar"></i> Enhanced Reports System
+                    <small>Generate comprehensive business reports in multiple formats</small>
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Stats Cards -->
+    <div class="row">
+        <div class="col-md-3">
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-file-pdf-o fa-3x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">PDF</div>
+                            <div>Professional Reports</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="panel panel-success">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-file-excel-o fa-3x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">Excel</div>
+                            <div>Data Analysis</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="panel panel-warning">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-file-text-o fa-3x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">CSV</div>
+                            <div>Data Export</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="panel panel-info">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-code fa-3x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">JSON</div>
+                            <div>API Integration</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="row">
+        <!-- Report Builder -->
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <i class="fa fa-cogs"></i> Report Builder
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <p class="text-muted">Create custom reports with advanced filtering and multiple output formats.</p>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="@Url.Action("ReportBuilder")" class="btn btn-primary btn-lg btn-block">
+                                <i class="fa fa-magic"></i> Launch Report Builder
+                            </a>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="@Url.Action("Templates")" class="btn btn-success btn-lg btn-block">
+                                <i class="fa fa-templates"></i> Use Templates
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    
+                    <h4>Available Report Types:</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                <li><i class="fa fa-check text-success"></i> <strong>Sales Reports</strong> - Revenue analysis and trends</li>
+                                <li><i class="fa fa-check text-success"></i> <strong>Invoice Reports</strong> - Detailed invoice information</li>
+                                <li><i class="fa fa-check text-success"></i> <strong>Product Reports</strong> - Inventory and product analysis</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                <li><i class="fa fa-check text-success"></i> <strong>Customer Reports</strong> - Customer behavior analysis</li>
+                                <li><i class="fa fa-check text-success"></i> <strong>Inventory Reports</strong> - Stock levels and management</li>
+                                <li><i class="fa fa-check text-success"></i> <strong>Custom Reports</strong> - Tailored business insights</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="col-md-4">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <i class="fa fa-bolt"></i> Quick Actions
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <div class="list-group">
+                        <a href="@Url.Action("GenerateFromTemplate", new { templateId = "monthly-sales" })" class="list-group-item">
+                            <i class="fa fa-calendar"></i> Monthly Sales Report
+                            <span class="badge">PDF</span>
+                        </a>
+                        <a href="@Url.Action("GenerateFromTemplate", new { templateId = "product-inventory" })" class="list-group-item">
+                            <i class="fa fa-boxes"></i> Product Inventory
+                            <span class="badge">Excel</span>
+                        </a>
+                        <a href="@Url.Action("GenerateFromTemplate", new { templateId = "customer-analysis" })" class="list-group-item">
+                            <i class="fa fa-users"></i> Customer Analysis
+                            <span class="badge">PDF</span>
+                        </a>
+                        <a href="@Url.Action("GenerateFromTemplate", new { templateId = "quarterly-summary" })" class="list-group-item">
+                            <i class="fa fa-chart-line"></i> Quarterly Summary
+                            <span class="badge">PDF</span>
+                        </a>
+                    </div>
+                    
+                    <hr>
+                    
+                    <a href="@Url.Action("History")" class="btn btn-default btn-block">
+                        <i class="fa fa-history"></i> View Report History
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <i class="fa fa-star"></i> Enhanced Features
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="text-center">
+                                <i class="fa fa-download fa-3x text-primary"></i>
+                                <h4>Multiple Formats</h4>
+                                <p class="text-muted">Export reports in PDF, Excel, CSV, and JSON formats for different use cases.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="text-center">
+                                <i class="fa fa-filter fa-3x text-success"></i>
+                                <h4>Advanced Filtering</h4>
+                                <p class="text-muted">Filter data by date ranges, customers, products, and custom parameters.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="text-center">
+                                <i class="fa fa-eye fa-3x text-warning"></i>
+                                <h4>Live Preview</h4>
+                                <p class="text-muted">Preview report data before generating the final document.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="text-center">
+                                <i class="fa fa-clock fa-3x text-info"></i>
+                                <h4>Report History</h4>
+                                <p class="text-muted">Track and manage previously generated reports with full history.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .huge {
+        font-size: 40px;
+    }
+    
+    .panel-body .fa-3x {
+        margin-bottom: 15px;
+    }
+    
+    .list-group-item .badge {
+        background-color: #5cb85c;
+    }
+    
+    .page-header {
+        border-bottom: 2px solid #eee;
+        margin-bottom: 30px;
+    }
+    
+    .page-header h1 {
+        color: #337ab7;
+    }
+    
+    .page-header small {
+        color: #777;
+        display: block;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+</style>
+
+<script>
+    $(document).ready(function() {
+        // Add hover effects to panels
+        $('.panel').hover(
+            function() {
+                $(this).addClass('panel-hover');
+            },
+            function() {
+                $(this).removeClass('panel-hover');
+            }
+        );
+    });
+</script>
+
+<style>
+    .panel-hover {
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        transform: translateY(-2px);
+        transition: all 0.3s ease;
+    }
+</style>
