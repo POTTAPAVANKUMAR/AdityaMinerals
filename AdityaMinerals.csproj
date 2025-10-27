@@ -55,6 +55,15 @@
     <Reference Include="Select.HtmlToPdf, Version=21.1.0.0, Culture=neutral, PublicKeyToken=e0ae9f6e27a97018, processorArchitecture=MSIL">
       <HintPath>packages\Select.HtmlToPdf.21.1.0-rc1\lib\net40\Select.HtmlToPdf.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\iTextSharp.5.5.13.3\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus, Version=4.5.3.3, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>packages\EPPlus.4.5.3.3\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="CsvHelper, Version=15.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>packages\CsvHelper.15.0.10\lib\net47\CsvHelper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -133,12 +142,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BussinessLayer\DashboardBL.cs" />
     <Compile Include="BussinessLayer\LoginBL.cs" />
+    <Compile Include="BussinessLayer\EnhancedReportBL.cs" />
+    <Compile Include="BussinessLayer\ReportGenerationService.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PDFController.cs" />
+    <Compile Include="Controllers\EnhancedReportsController.cs" />
     <Compile Include="DataAccessLayer\DashbordDL.cs" />
     <Compile Include="DataAccessLayer\LoginDL.cs" />
     <Compile Include="DataAccessLayer\PDFDLController.cs" />
+    <Compile Include="DataAccessLayer\EnhancedReportDL.cs" />
     <Compile Include="EntityModels\AdityamineralsEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -197,6 +210,7 @@
     <Compile Include="Models\CommonOutput.cs" />
     <Compile Include="Models\login.cs" />
     <Compile Include="Models\report.cs" />
+    <Compile Include="Models\EnhancedReportModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -280,6 +294,7 @@
     <Content Include="Views\Dashboard\_productsedit.cshtml" />
     <Content Include="Views\Dashboard\_editbillprodA.cshtml" />
     <Content Include="Views\PDF\Report.cshtml" />
+    <Content Include="Views\EnhancedReports\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
